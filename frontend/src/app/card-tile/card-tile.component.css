@@ -1,0 +1,25 @@
+.tile {
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+}
+
+.icon img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+a.tile {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
