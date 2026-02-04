@@ -2,5 +2,11 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/SM-System---Full-Stack
-/.vs
+
+
+# Visual Studio
+.vs/
+
+# Build output
+bin/
+obj/
