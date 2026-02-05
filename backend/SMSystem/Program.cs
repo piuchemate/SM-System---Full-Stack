@@ -1,4 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using SMS.Configuration;
+using SMS.DataAccess.DBContext;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.RegisterDiAppServices();
+
+builder.Services.AddDbContext<SMSystemDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Singleton); 
 
 // Add services to the container.
 
