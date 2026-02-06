@@ -1,29 +1,41 @@
-export class Students {
-  id!: string;
-  firstName!: string;
-  age!: number;
-  class!: string;
-
-  constructor(s: any) {
-    this.id = s.id;
-    this.firstName = s.firstName;
-    this.age = s.age;
-    this.class = s.class;
-  }
+export class StudentDetail {
+  fName!: string;
+  mName!: string;
+  lName!: string;
+  gender!: string;
+  email!: string;
+  dob!: Date;
+  birthPlace!: string;
+  religion!: string;
+  category!: string;
+  caste!: string;
+  motherTongue!: string;
+  disability!: boolean;
+  disabilityDetails!: string;
+  lastSchool!: string;
+  admissionDate!: Date ;
+  admissionClass!: string;
+  address!: string;
+  phone!: number;
+  documentsSubmitted!: string;
+passportPhoto!: string;
 }
-
 export class FatherDetail {
-  firstName!: string;
-  age!: number;
-  class!: string;
-  constructor(s: any) {
-    this.firstName = s.firstName;
-    this.age = s.age;
-    this.class = s.class;
-  }
+  fName!: string;
+  mName!: string;
+  lName!: string;
+  email!: string;
+  phone!: number;
 }
-
+export class MotherDetail {
+ fName!: string;
+  mName!: string;
+  lName!: string;
+  email!: string;
+  phone!: number;
+}
 export interface StudEnroll {
-  students: Students[];
+  studentDetails: StudentDetail[];
   fatherDetails: FatherDetail[];
+  motherDetails: MotherDetail[];
 }

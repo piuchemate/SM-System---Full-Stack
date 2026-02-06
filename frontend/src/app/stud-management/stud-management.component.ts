@@ -2,11 +2,9 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { DataService } from './data.service';
 import { StudEntry, Students } from 'src/assets/Models/stud-entry';
-import { FormsModule } from '@angular/forms';
+import { FatherDetail, MotherDetail, StudEnroll, StudentDetail } from 'src/assets/Models/stud-enroll';
 
 export interface UserData {
   id: string;
@@ -32,16 +30,23 @@ export class StudManagementComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  studEnroll!: StudEnroll;
 
+  
   // track which row's action popover is open (id)
   activeRow: string | null = null;
-  showForm = false;
+  showForm = true;
   constructor(private dataService: DataService) {
   }
   ngOnInit() {
     this.dataService.getStudents().subscribe(res => {
       this.dataSource.data = res.students.map(s => new Students(s));
     });
+    this.studEnroll = {
+    studentDetails: [new StudentDetail()],
+    fatherDetails: [new FatherDetail()],
+    motherDetails: [new MotherDetail()]
+  };
   }
 
   ngAfterViewInit() {
