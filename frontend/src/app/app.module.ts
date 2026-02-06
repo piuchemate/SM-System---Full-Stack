@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     CommonModule,
     AppRoutingModule,
+    FormsModule,
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {

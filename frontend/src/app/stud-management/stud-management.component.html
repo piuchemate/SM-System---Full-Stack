@@ -1,7 +1,6 @@
 <div class="dashboard-container">
 
   <h4>{{ role }}</h4>
-  <h1>{{ welcomeText }}</h1>
   <p>{{ description }}</p>
 
   <div class="row">
@@ -74,7 +73,7 @@
           </div>
         </td>
       </ng-container>
-      
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
@@ -94,128 +93,275 @@
 
       <div class="formInfo container row">
         <h3>Parent Information</h3>
-        <strong>Father Information</strong>
-        <div class="row">
-          <div class="fname col-6 col-md-4">
-            <label for="fname me-3">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-          </div>
-          <div class="midname col-6 col-md-4">
-            <label for="midname">Middle Name</label>
-            <input type="text" id="midname" name="middlename" placeholder="Your middle name..">
-          </div>
-          <div class="lname col-6 col-md-4">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last">
-          </div>
-          <div class="w-100"></div>
-          <div class="emailid col-6 col-md-4">
-            <label for="emailId">Email ID</label>
-            <input type="email" id="emailId" name="emailid" placeholder="Your email id..">
+
+
+        <!-- Father Information Section -->
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <strong class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Father Information
+              </strong>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="fname col-6 col-md-4">
+                    <label for="fname me-3">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name.." class="form-control"
+                      required ngModel #firstname="ngModel">
+                    <small class="text-danger" *ngIf="firstname.invalid && firstname.touched">
+                      Father first name is required
+                    </small>
+                  </div>
+                  <div class="midname col-6 col-md-4">
+                    <label for="midname">Middle Name</label>
+                    <input type="text" id="midname" name="middlename" placeholder="Your middle name.." required ngModel
+                      #middlename="ngModel">
+                    <small class="text-danger" *ngIf="middlename.invalid && middlename.touched">
+                      Father middle name is required
+                    </small>
+                  </div>
+                  <div class="lname col-6 col-md-4">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last" required ngModel
+                      #lastname="ngModel">
+                    <small class="text-danger" *ngIf="lastname.invalid && lastname.touched">
+                      Father last name is required
+                    </small>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="emailid col-6 col-md-4">
+                    <label for="emailId">Email ID</label>
+                    <input type="email" id="emailId" name="emailid" placeholder="Your email id.." required ngModel
+                      #emailid="ngModel">
+                    <small class="text-danger" *ngIf="emailid.invalid && emailid.touched">
+                      Email ID is required
+                    </small>
+                  </div>
+                  <div class="phoneNo col-6 col-md-4">
+                    <label for="phoneNo">Phone No</label>
+                    <input type="tel" id="phoneNo" name="phoneno" placeholder="Your phone no.." required ngModel
+                      #phoneno="ngModel">
+                    <small class="text-danger" *ngIf="phoneno.invalid && phoneno.touched">
+                      Phone number is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="phoneNo col-6 col-md-4">
-            <label for="phoneNo">Phone No</label>
-            <input type="tel" id="phoneNo" name="phoneno" placeholder="Your phone no..">
-          </div>
-        </div>
-        <strong>Mother Information</strong>
-        <div class="row">
-          <div class="fname col-6 col-md-4">
-            <label for="fname me-3">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-          </div>
-          <div class="midname col-6 col-md-4">
-            <label for="midname">Middle Name</label>
-            <input type="text" id="midname" name="middlename" placeholder="Your middle name..">
-          </div>
-          <div class="lname col-6 col-md-4">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last">
-          </div>
-          <div class="w-100"></div>
-          <div class="emailid col-6 col-md-4">
-            <label for="emailId">Email ID</label>
-            <input type="email" id="emailId" name="emailid" placeholder="Your email id..">
+          <!-- Mother Information Section -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <strong class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Mother Information
+              </strong>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="fname col-6 col-md-4">
+                    <label for="fname me-3">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name.." class="form-control"
+                      required ngModel #motherFirstname="ngModel">
+                    <small class="text-danger" *ngIf="motherFirstname.invalid && motherFirstname.touched">
+                      Mother first name is required
+                    </small>
+                  </div>
+                  <div class="midname col-6 col-md-4">
+                    <label for="midname">Middle Name</label>
+                    <input type="text" id="midname" name="middlename" placeholder="Your middle name.." required ngModel
+                      #motherMiddlename="ngModel">
+                    <small class="text-danger" *ngIf="motherMiddlename.invalid && motherMiddlename.touched">
+                      Mother middle name is required
+                    </small>
+                  </div>
+                  <div class="lname col-6 col-md-4">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last" required ngModel
+                      #motherLastname="ngModel">
+                    <small class="text-danger" *ngIf="motherLastname.invalid && motherLastname.touched">
+                      Mother last name is required
+                    </small>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="emailid col-6 col-md-4">
+                    <label for="emailId">Email ID</label>
+                    <input type="email" id="emailId" name="emailid" placeholder="Your email id.." required ngModel
+                      #motherEmailid="ngModel">
+                    <small class="text-danger" *ngIf="motherEmailid.invalid && motherEmailid.touched">
+                      Mother email ID is required
+                    </small>
+                  </div>
+
+                  <div class="phoneNo col-6 col-md-4">
+                    <label for="phoneNo">Phone No</label>
+                    <input type="tel" id="phoneNo" name="phoneno" placeholder="Your phone no.." required ngModel
+                      #motherPhoneno="ngModel">
+                    <small class="text-danger" *ngIf="motherPhoneno.invalid && motherPhoneno.touched">
+                      Mother phone number is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="phoneNo col-6 col-md-4">
-            <label for="phoneNo">Phone No</label>
-            <input type="tel" id="phoneNo" name="phoneno" placeholder="Your phone no..">
-          </div>
-        </div>
-        <strong>Student Information</strong>
-        <div class="row">
-          <div class="fname col-6 col-md-4">
-            <label for="fname me-3">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-          </div>
-          <div class="midname col-6 col-md-4">
-            <label for="midname">Middle Name</label>
-            <input type="text" id="midname" name="middlename" placeholder="Your middle name..">
-          </div>
-          <div class="lname col-6 col-md-4">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last">
-          </div>
-          <div class="gender col-6 col-md-4">
-            <label for="gender">Gender</label>
-            <input type="radio" id="male" name="gender" value="male"> Male
-            <input type="radio" id="female" name="gender" value="female"> Female
-          </div>
-          <div class="emailid col-6 col-md-4">
-            <label for="emailId">Email ID</label>
-            <input type="email" id="emailId" name="emailid" placeholder="Your email id..">
-          </div>
-          <div class="dob col-6 col-md-4">
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob">
-          </div>
-          <div class="birthplace col-6 col-md-4">
-            <label for="birthPlace">Birth Place</label>
-            <input type="text" id="birthPlace" name="birthPlace" placeholder="Your birth place..">
-          </div>
-          <div class="caste col-6 col-md-4">
-            <label for="caste">Caste</label>
-            <input type="text" id="caste" name="caste" placeholder="Your caste..">
-          </div>
-          <div class="category col-6 col-md-4">
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category" placeholder="Your category..">
-          </div>
-          <div class="religion col-6 col-md-4">
-            <label for="religion">Religion</label>
-            <input type="text" id="religion" name="religion" placeholder="Your religion..">
-          </div>
-          <div class="mothertongue col-6 col-md-4">
-            <label for="motherTongue">Mother Tongue</label>
-            <input type="text" id="motherTongue" name="motherTongue" placeholder="Your mother tongue..">
-          </div>
-          <div class="physicaldisability col-6 col-md-4">
-            <label for="physicalDisability">If Any Physical Disability</label>
-            <input type="text" id="physicalDisability" name="physicalDisability" placeholder="if any physical disability..">
-          </div>
-          <div class="lastschool col-6 col-md-4">
-            <label for="lastSchool">Last School Attended</label>
-            <input type="text" id="lastSchool" name="lastSchool" placeholder="Your last school..">
-          </div>
-          <div class="standard col-6 col-md-4">
-            <label for="standard">Standard to which admission is sought</label>
-            <input type="text" id="standard" name="standard" placeholder="Your standard..">
-          </div>
-          <div class="adress col-6 col-md-4">
-            <label for="address">Address</label>
-            <textarea id="address" name="address" placeholder="Your address.."></textarea>
-          </div>
-          <div class="documents col-6 col-md-4">
-            <label for="documents">Documents</label>
-            <select id="documents" name="documents">
-              <option value="">Select Document Type</option>
-              <option value="birthCertificate">Birth Certificate</option>
-              <option value="aadharCard">Aadhar Card</option>
-              <option value="previousSchoolRecords">Previous School Records</option>
-              </select>
-            <input type="file" id="documents" name="documents" multiple>
+          <!-- Student Information -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" >
+              <strong class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                Student Information
+              </strong>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" >
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="fname col-6 col-md-4">
+                    <label for="fname me-3">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name.." class="form-control"
+                      required ngModel #studentFirstname="ngModel">
+                    <small class="text-danger" *ngIf="studentFirstname.invalid && studentFirstname.touched">
+                      Student first name is required
+                    </small>
+                  </div>
+                  <div class="midname col-6 col-md-4">
+                    <label for="midname">Middle Name</label>
+                    <input type="text" id="midname" name="middlename" placeholder="Your middle name.." required ngModel
+                      #studentMiddlename="ngModel">
+                    <small class="text-danger" *ngIf="studentMiddlename.invalid && studentMiddlename.touched">
+                      Student middle name is required
+                    </small>
+                  </div>
+                  <div class="lname col-6 col-md-4">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last" required ngModel
+                      #studentLastname="ngModel">
+                    <small class="text-danger" *ngIf="studentLastname.invalid && studentLastname.touched">
+                      Student last name is required
+                    </small>
+                  </div>
+                  <div class="gender col-6 col-md-4">
+                    <label for="gender">Gender</label>
+                    <input type="radio" id="male" name="gender" value="male"> Male
+                    <input type="radio" id="female" name="gender" value="female"> Female
+                  </div>
+                  <div class="emailid col-6 col-md-4">
+                    <label for="emailId">Email ID</label>
+                    <input type="email" id="emailId" name="emailid" placeholder="Your email id.." required ngModel
+                      #studentEmailid="ngModel">
+                    <small class="text-danger" *ngIf="studentEmailid.invalid && studentEmailid.touched">
+                      Student email ID is required
+                    </small>
+                  </div>
+                  <div class="dob col-6 col-md-4">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" placeholder="Your date of birth.." required ngModel
+                      #dob="ngModel">
+                    <small class="text-danger" *ngIf="dob.invalid && dob.touched">
+                      Student date of birth is required
+                    </small>
+                  </div>
+                  <div class="birthplace col-6 col-md-4">
+                    <label for="birthPlace">Birth Place</label>
+                    <input type="text" id="birthPlace" name="birthPlace" placeholder="Your birth place.." required
+                      ngModel #studentBirthplace="ngModel">
+                  </div>
+                  <div class="religion col-6 col-md-4">
+                    <label for="religion">Religion</label>
+                    <select id="religion" name="religion" class="form-select"
+                      (change)="onReligionChange(religionSelect.value)" #religionSelect required ngModel>
+                      <option value="">Select Religion</option>
+                      <option [value]="religion.value" *ngFor="let religion of religions">{{religion.label}}</option>
+                    </select>
+                  </div>
+                  <div class="category col-6 col-md-4">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" class="form-select">
+                      <option value="">Select Category</option>
+                      <option *ngFor="let caste of castes" [value]="caste">
+                        {{ caste }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="caste col-6 col-md-4">
+                    <label for="caste">Caste</label>
+                    <input type="text" id="caste" name="caste" placeholder="Your caste.." required ngModel
+                      #studentCaste="ngModel">
+                  </div>
+                  <div class="mothertongue col-6 col-md-4">
+                    <label for="motherTongue">Mother Tongue</label>
+                    <select id="motherTongue" name="motherTongue" class="form-select" required ngModel
+                      #studentMotherTongue="ngModel">
+                      <option value="">Select Mother Tongue</option>
+                      <option *ngFor="let language of languages" [value]="language">
+                        {{ language }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="physicaldisability col-6 col-md-4">
+                    <label for="physicalDisability">If Any Physical Disability</label>
+                    <select id="physicalDisability" name="physicalDisability" class="form-select" #disabilitySelect
+                      (change)="onDisabilityChange(disabilitySelect.value)" required ngModel>
+                      <option value="">PhysicalDisability</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <textarea class="form-control mt-2" placeholder="Give more details"
+                      [hidden]="!showDisabilityDetails"></textarea>
+                  </div>
+                  <div class="lastschool col-6 col-md-4">
+                    <label for="lastSchool">Last School Attended</label>
+                    <input type="text" id="lastSchool" name="lastSchool" placeholder="Your last school.." required
+                      ngModel #lastSchool="ngModel">
+                  </div>
+                  <div class="standard col-6 col-md-4">
+                    <label for="standard">Standard to which admission is sought</label>
+                    <select id="standard" name="standard" class="form-select" required ngModel #standardSelect>
+                      <option value="">Select Standard</option>
+                      <option value="Nursery">Nursery</option>
+                      <option value="LKG">LKG</option>
+                      <option value="UKG">UKG</option>
+                      <option value="1st">1st</option>
+                      <option value="2nd">2nd</option>
+                      <option value="3rd">3rd</option>
+                      <option value="4th">4th</option>
+                      <option value="5th">5th</option>
+                      <option value="6th">6th</option>
+                      <option value="7th">7th</option>
+                      <option value="8th">8th</option>
+                      <option value="9th">9th</option>
+                      <option value="10th">10th</option>
+                    </select>
+                  </div>
+                  <div class="adress col-6 col-md-4">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" placeholder="Your address.." required ngModel
+                      #address="ngModel"></textarea>
+                  </div>
+                  <div class="documents col-6 col-md-4">
+                    <label for="documents">Documents</label>
+                    <select id="documents" name="documents" class="form-select" required ngModel #documentsSelect>
+                      <option value="">Select Document Type</option>
+                      <option value="birthCertificate">Birth Certificate</option>
+                      <option value="aadharCard">Aadhar Card</option>
+                      <option value="previousSchoolRecords">Previous School Records</option>
+                    </select>
+                    <input type="file" id="documents" name="documents" multiple required>
+                  </div>
+                  <div class="passportphoto col-6 col-md-4">
+                    <label for="passportPhoto">Passport Size Photo</label>
+                    <input type="file" id="passportPhoto" name="passportPhoto" required ngModel
+                      #passportPhoto="ngModel">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

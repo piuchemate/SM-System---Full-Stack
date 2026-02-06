@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DataService } from './data.service';
 import { StudEntry, Students } from 'src/assets/Models/stud-entry';
-
+import { FormsModule } from '@angular/forms';
 
 export interface UserData {
   id: string;
@@ -23,9 +23,8 @@ export interface UserData {
 })
 export class StudManagementComponent {
   // dynamic data (can be changed anytime)
-  role = 'Student';
-  welcomeText = 'Welcome, Student';
-  description = 'Access your classes and track your performance';
+  role = 'Student Management';
+  description = 'Access and manage your student information here.';
 
 
   displayedColumns: string[] = ['id', 'firstName',  'age', 'class'];
@@ -88,5 +87,32 @@ export class StudManagementComponent {
   closeForm() {
     this.showForm = false;
   }
+
+ public religions = [
+    { value: 'hindu', label: 'Hindu', castes: ['Brahmin', 'Kshatriya', 'Vaishya', 'Shudra'] },
+    { value: 'muslim', label: 'Muslim', castes: ['Sunni', 'Shia'] },
+    { value: 'christian', label: 'Christian', castes: ['Catholic', 'Protestant', 'Orthodox'] },
+    { value: 'sikh', label: 'Sikh', castes: ['Jat', 'Khatri', 'Arora'] },
+    { value: 'other', label: 'Other', castes: [] }
+  ];
+
+   selectedReligion: any = null;
+  castes: string[] = [];
+
+  onReligionChange(value: string) {
+    this.selectedReligion = this.religions.find(r => r.value === value);
+    this.castes = this.selectedReligion ? this.selectedReligion.castes : [];
+  }
+
+  public languages: string[] = [
+    'English', 'Hindi', 'Spanish', 'French', 'German', 'Chinese', 'Japanese', 'Russian', 'Arabic', 'Portuguese'
+  ];
+
+  showDisabilityDetails = false;
+
+onDisabilityChange(value: string) {
+  this.showDisabilityDetails = value === 'Yes';
+}
+
 }
 
