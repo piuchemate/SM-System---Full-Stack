@@ -23,6 +23,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @NgModule({
   declarations: [

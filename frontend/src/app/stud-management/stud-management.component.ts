@@ -3,6 +3,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DataService } from './data.service';
+import { FormBuilder, NgForm } from '@angular/forms';
 import { StudEntry, Students } from 'src/assets/Models/stud-entry';
 import { FatherDetail, MotherDetail, StudEnroll, StudentDetail } from 'src/assets/Models/stud-enroll';
 
@@ -25,29 +26,82 @@ export class StudManagementComponent {
   description = 'Access and manage your student information here.';
 
 
-  displayedColumns: string[] = ['id', 'firstName',  'age', 'class'];
+  displayedColumns: string[] = ['id', 'firstName', 'age', 'class','actions'];
   dataSource = new MatTableDataSource<Students>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('studentForm') studentForm!: NgForm;
   studEnroll!: StudEnroll;
 
-  
+
   // track which row's action popover is open (id)
   activeRow: string | null = null;
-  showForm = true;
-  constructor(private dataService: DataService) {
+  showForm = false;
+  userForm: any;
+  constructor(private dataService: DataService, private fb: FormBuilder) {
+    this.userForm = this.fb.group({
+      fName: [''],
+      mName: [''],
+      lname: [''],
+      emailid: [''],
+      phoneno: [''],
+      name: [''],
+    })
+    this.dataService.postStudentData(this.userForm.value);
+  }
+  get f() {
+    console.log(this.userForm);
+    return this.userForm.controls;
   }
   ngOnInit() {
-    this.dataService.getStudents().subscribe(res => {
-      this.dataSource.data = res.students.map(s => new Students(s));
-    });
+    this.loadStudents();
+
     this.studEnroll = {
-    studentDetails: [new StudentDetail()],
-    fatherDetails: [new FatherDetail()],
-    motherDetails: [new MotherDetail()]
-  };
+      studentDetails: [new StudentDetail()],
+      fatherDetails: [new FatherDetail()],
+      motherDetails: [new MotherDetail()]
+    };
   }
+  loadStudents() {
+    this.dataService.getStudents().subscribe((res: any) => {
+
+      console.log("API Response:", res); // 👈 check this in console
+
+      if (!res || !Array.isArray(res)) {
+        console.error("Response is not an array");
+        return;
+      }
+
+      const formatted = res.map((item: any) => ({
+        id: item.id,
+        firstName: item.studentDetails?.[0]?.fName + ' ' + item.studentDetails?.[0]?.lName || '',
+        age: item.studentDetails?.[0]?.age || '',
+        class: item.studentDetails?.[0]?.admissionClass || ''
+      }));
+
+      this.dataSource.data = formatted;
+    });
+  }
+
+
+  saveForm(Form: any) {
+    console.log("Sending Data:", this.studEnroll);
+
+    this.dataService.postStudentData(this.studEnroll).subscribe({
+      next: (res) => {
+        console.log("Saved Successfully", res);
+
+        this.loadStudents();   // refresh table
+        this.showForm = false; // close form
+      },
+      error: (err) => {
+        console.error("Error:", err);
+      }
+    });
+  }
+
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -86,14 +140,17 @@ export class StudManagementComponent {
 
   openAddForm() {
     this.showForm = true;
+    this.studentForm.resetForm();
     // optional: reset form state here
   }
 
-  closeForm() {
-    this.showForm = false;
-  }
+  // saveForm() {
+  //   // implement save logic (e.g., send studEnroll data to backend)
+  //   console.log('Saving form', this.studEnroll);
+  //   this.showForm = false;
+  // }
 
- public religions = [
+  public religions = [
     { value: 'hindu', label: 'Hindu', castes: ['Brahmin', 'Kshatriya', 'Vaishya', 'Shudra'] },
     { value: 'muslim', label: 'Muslim', castes: ['Sunni', 'Shia'] },
     { value: 'christian', label: 'Christian', castes: ['Catholic', 'Protestant', 'Orthodox'] },
@@ -101,7 +158,7 @@ export class StudManagementComponent {
     { value: 'other', label: 'Other', castes: [] }
   ];
 
-   selectedReligion: any = null;
+  selectedReligion: any = null;
   castes: string[] = [];
 
   onReligionChange(value: string) {
@@ -115,9 +172,12 @@ export class StudManagementComponent {
 
   showDisabilityDetails = false;
 
-onDisabilityChange(value: string) {
-  this.showDisabilityDetails = value === 'Yes';
-}
+  onDisabilityChange(value: string) {
+    this.showDisabilityDetails = value === 'Yes';
+  }
+
+
+
 
 }
 

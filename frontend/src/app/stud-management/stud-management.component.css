@@ -14,14 +14,14 @@
 }
 
 /* Make the header sticky ... */
-.fixed-header-table .mat-header-row,
+/* .fixed-header-table .mat-header-row,
 .fixed-header-table .mat-header-row .mat-header-cell,
 .fixed-header-table th.mat-header-cell {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #ffffff;
-  color: inherit;
+  color: white;
   box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
 }
 
@@ -31,6 +31,12 @@
 
 table {
   width: 100%;
+} */
+.mat-mdc-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
 }
 
 /* ...existing code... */

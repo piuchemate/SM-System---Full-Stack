@@ -11,10 +11,13 @@ export class DataService {
 
   private url = '/assets/stud-data.json';
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {
+  }
+  postStudentData(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/students', data);
+  }
   getStudents(): Observable<StudEntry> {
-  return this.http.get<StudEntry>(this.url);
+    return this.http.get<StudEntry>('http://localhost:3000/students');
   }
 
 }
