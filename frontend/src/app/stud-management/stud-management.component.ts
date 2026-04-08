@@ -132,20 +132,8 @@ export class StudManagementComponent {
     this.activeRow = this.activeRow === id ? null : id;
   }
 
-  // handlers for action icons
-  // onEdit(row: UserData) {
-  //   // implement edit logic
-  //   console.log('Edit', row);
-  //   this.showForm = true;
-  //   this.dataService.getStudentsbyID(row.id).subscribe(res => {
-  //     console.log('Data Binding after get id call, ' + res.fatherDetails[0].fName);
 
-  //     this.studEnroll.fatherDetails[0].fName = res.fatherDetails[0].fName
-  //   });
-  //   // close popover
-  //   this.activeRow = null;
 
-  // }
   onEdit(row: UserData) {
 
     const id = row.id;
@@ -153,13 +141,10 @@ export class StudManagementComponent {
     this.dataService.getStudentsbyID(id).subscribe(res => {
 
       console.log("Edit Data:", res);
-
       // Open form
-      this.showForm = false;
-
+      this.showForm = true;
       // Assign full object to form model
       this.studEnroll = res;
-
     });
 
     this.activeRow = null;

@@ -112,10 +112,16 @@
         }
       ],
       "fatherDetails": [
-        {}
+        {
+          "fName": "gh",
+          "mName": "g"
+        }
       ],
       "motherDetails": [
-        {}
+        {
+          "fName": "fvw",
+          "mName": "cq"
+        }
       ],
       "id": 5
     },
@@ -126,7 +132,7 @@
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
           "dob": "2026-02-01",
-          "admissionClass": "9th"
+          "admissionClass": "4th"
         }
       ],
       "fatherDetails": [
