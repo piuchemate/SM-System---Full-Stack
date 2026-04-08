@@ -13,12 +13,12 @@ export class StudentDetail {
   disability!: boolean;
   disabilityDetails!: string;
   lastSchool!: string;
-  admissionDate!: Date ;
+  admissionDate!: Date;
   admissionClass!: string;
   address!: string;
   phone!: number;
   documentsSubmitted!: string;
-passportPhoto!: string;
+  passportPhoto!: string;
 }
 export class FatherDetail {
   fName!: string;
@@ -28,7 +28,7 @@ export class FatherDetail {
   phone!: number;
 }
 export class MotherDetail {
- fName!: string;
+  fName!: string;
   mName!: string;
   lName!: string;
   email!: string;
@@ -38,4 +38,5 @@ export interface StudEnroll {
   studentDetails: StudentDetail[];
   fatherDetails: FatherDetail[];
   motherDetails: MotherDetail[];
+  id?: number;
 }

@@ -140,6 +140,47 @@
         {}
       ],
       "id": 6
+    },
+    {
+      "studentDetails": [
+        {}
+      ],
+      "fatherDetails": [
+        {
+          "fName": "trial"
+        }
+      ],
+      "motherDetails": [
+        {}
+      ],
+      "id": 7
+    },
+    {
+      "studentDetails": [
+        {
+          "fName": "Pyyyyyy",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "religion": "christian",
+          "category": "Protestant"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "ABCD",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "ghj",
+          "lName": "Chemate"
+        }
+      ],
+      "id": 8
     }
   ]
 }

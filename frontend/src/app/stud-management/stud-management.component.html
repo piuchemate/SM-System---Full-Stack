@@ -6,7 +6,7 @@
   <div class="row">
     <!-- Add button shown when table is visible -->
     <div *ngIf="!showForm" class="col-md-3 offset-md-8 text-end">
-      <button class="add-btn btn btn-primary" (click)="openAddForm()">
+      <button class="add-btn btn btn-primary" (click)="openAddForm()" >
         <i class="fas fa-user-plus me-2"></i>Add Student
       </button>
     </div>
@@ -85,7 +85,6 @@
   <!-- Form Section -->
   <div *ngIf="showForm" class="form-section" id="student-form">
     <form action="" method="post" #studentForm="ngForm">
-
       <div class="formInfo container row">
         <h3>Student Entry Form</h3>
 
@@ -104,43 +103,44 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="fname col-6 col-md-4">
-                    <label for="fname me-3">First Name</label>
-                    <input type="text" id="fname" name="fname" placeholder="Your name.." class="form-control" required
-                      [(ngModel)]="studEnroll.fatherDetails[0].fName" #fname="ngModel">
-                    <small class="text-danger" *ngIf="fname.invalid && fname.touched">
+                    <label for="fNameofFather me-3">First Name</label>
+                    <input type="text" id="fname" name="fNameofFather" placeholder="Your name.." class="form-control" required
+                      [(ngModel)]="studEnroll.fatherDetails[0].fName" #fNameofFather="ngModel" [class.is-invalid]="fNameofFather.invalid && (fNameofFather.touched)">
+                    <small class="text-danger" *ngIf="fNameofFather.invalid && (fNameofFather.touched )">
                       Father first name is required
                     </small>
                   </div>
                   <div class="mName col-6 col-md-4">
                     <label for="mName">Middle Name</label>
-                    <input type="text" id="mName" name="mName" placeholder="Your middle name.." required
-                      [(ngModel)]="studEnroll.fatherDetails[0].mName" #mName="ngModel">
-                    <small class="text-danger" *ngIf="mName.invalid && mName.touched">
+                    <input type="text" id="mName" name="mNameofFather" placeholder="Your middle name.." required
+                      [(ngModel)]="studEnroll.fatherDetails[0].mName" #mNameofFather="ngModel">
+                    <small class="text-danger" *ngIf="mNameofFather.invalid && mNameofFather.touched">
                       Father middle name is required
                     </small>
                   </div>
                   <div class="lname col-6 col-md-4">
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lname" placeholder="Your last" required
-                      [(ngModel)]="studEnroll.fatherDetails[0].lName" #lname="ngModel">
-                    <small class="text-danger" *ngIf="lname.invalid && lname.touched">
+                    <label for="lName">Last Name</label>
+                    <input type="text" id="lNameofFather"  placeholder="Your last" required
+                      [(ngModel)]="studEnroll.fatherDetails[0].lName" name="lNameoffather" #lNameoffather="ngModel">
+
+                    <small class="text-danger" *ngIf="lNameoffather.invalid && lNameoffather.touched">
                       Father last name is required
                     </small>
                   </div>
                   <div class="w-100"></div>
                   <div class="emailid col-6 col-md-4">
                     <label for="emailId">Email ID</label>
-                    <input type="email" id="emailId" name="emailid" placeholder="Your email id.." required
-                      [(ngModel)]="studEnroll.fatherDetails[0].email" #emailid="ngModel">
-                    <small class="text-danger" *ngIf="emailid.invalid && emailid.touched">
+                    <input type="email" id="emailId" name="emailidofFather" placeholder="Your email id.." required
+                      [(ngModel)]="studEnroll.fatherDetails[0].email" #emailidofFather="ngModel">
+                    <small class="text-danger" *ngIf="emailidofFather.invalid && emailidofFather.touched">
                       Email ID is required
                     </small>
                   </div>
                   <div class="phoneNo col-6 col-md-4">
                     <label for="phoneNo">Phone No</label>
-                    <input type="tel" id="phoneNo" name="phoneno" placeholder="Your phone no.." required
-                      [(ngModel)]="studEnroll.fatherDetails[0].phone" #phoneno="ngModel">
-                    <small class="text-danger" *ngIf="phoneno.invalid && phoneno.touched">
+                    <input type="tel" id="phoneNo" name="phonenoofFather" placeholder="Your phone no.." required
+                      [(ngModel)]="studEnroll.fatherDetails[0].phone" #phonenoofFather="ngModel">
+                    <small class="text-danger" *ngIf="phonenoofFather.invalid && phonenoofFather.touched">
                       Phone number is required
                     </small>
                   </div>
@@ -163,42 +163,42 @@
                 <div class="row">
                   <div class="fname col-6 col-md-4">
                     <label for="fname me-3">First Name</label>
-                    <input type="text" id="fname" name="fname" placeholder="Your name.." class="form-control" required
-                      [(ngModel)]="studEnroll.motherDetails[0].fName" #fname="ngModel">
-                    <small class="text-danger" *ngIf="fname.invalid && fname.touched">
+                    <input type="text" id="fname" name="fnameofmother" placeholder="Your name.." class="form-control" required
+                      [(ngModel)]="studEnroll.motherDetails[0].fName" #fnameofmother="ngModel">
+                    <small class="text-danger" *ngIf="fnameofmother.invalid && fnameofmother.touched">
                       Mother first name is required
                     </small>
                   </div>
                   <div class="mName col-6 col-md-4">
                     <label for="mName">Middle Name</label>
-                    <input type="text" id="mName" name="mName" placeholder="Your middle name.." required
-                      [(ngModel)]="studEnroll.motherDetails[0].mName" #mName="ngModel">
-                    <small class="text-danger" *ngIf="mName.invalid && mName.touched">
+                    <input type="text" id="mName" name="mNameofmother" placeholder="Your middle name.." required
+                      [(ngModel)]="studEnroll.motherDetails[0].mName" #mNameofmother="ngModel">
+                    <small class="text-danger" *ngIf="mNameofmother.invalid && mNameofmother.touched">
                       Mother middle name is required
                     </small>
                   </div>
                   <div class="lname col-6 col-md-4">
                     <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lname" placeholder="Your last" required
-                      [(ngModel)]="studEnroll.motherDetails[0].lName" #lname="ngModel">
-                    <small class="text-danger" *ngIf="lname.invalid && lname.touched">
+                    <input type="text" id="lname" name="lnameofmother" placeholder="Your last" required
+                      [(ngModel)]="studEnroll.motherDetails[0].lName" #lnameofmother="ngModel">
+                    <small class="text-danger" *ngIf="lnameofmother.invalid && lnameofmother.touched">
                       Mother last name is required
                     </small>
                   </div>
                   <div class="w-100"></div>
                   <div class="emailid col-6 col-md-4">
                     <label for="emailId">Email ID</label>
-                    <input type="email" id="emailId" name="emailid" placeholder="Your email id.." required
-                      [(ngModel)]="studEnroll.motherDetails[0].email" #emailid="ngModel">
-                    <small class="text-danger" *ngIf="emailid.invalid && emailid.touched">
+                    <input type="email" id="emailId" name="emailidofmother" placeholder="Your email id.." required
+                      [(ngModel)]="studEnroll.motherDetails[0].email" #emailidofmother="ngModel">
+                    <small class="text-danger" *ngIf="emailidofmother.invalid && emailidofmother.touched">
                       Email ID is required
                     </small>
                   </div>
                   <div class="phoneNo col-6 col-md-4">
                     <label for="phoneNo">Phone No</label>
-                    <input type="tel" id="phoneNo" name="phoneno" placeholder="Your phone no.." required
-                      [(ngModel)]="studEnroll.motherDetails[0].phone" #phoneno="ngModel">
-                    <small class="text-danger" *ngIf="phoneno.invalid && phoneno.touched">
+                    <input type="tel" id="phoneNo" name="phonenoofmother" placeholder="Your phone no.." required
+                      [(ngModel)]="studEnroll.motherDetails[0].phone" #phonenoofmother="ngModel">
+                    <small class="text-danger" *ngIf="phonenoofmother.invalid && phonenoofmother.touched">
                       Phone number is required
                     </small>
                   </div>
@@ -221,25 +221,25 @@
                 <div class="row">
                   <div class="fname col-6 col-md-4">
                     <label for="fname me-3">First Name</label>
-                    <input type="text" id="fname" name="fName" placeholder="Your name.." class="form-control" required
-                      [(ngModel)]="studEnroll.studentDetails[0].fName" #fName="ngModel">
-                    <small class="text-danger" *ngIf="fName.invalid && fName.touched">
+                    <input type="text" id="fname" name="fNameofstudent" placeholder="Your name.." class="form-control" required
+                      [(ngModel)]="studEnroll.studentDetails[0].fName" #fNameofstudent="ngModel">
+                    <small class="text-danger" *ngIf="fNameofstudent.invalid && fNameofstudent.touched">
                       Student first name is required
                     </small>
                   </div>
                   <div class="midname col-6 col-md-4">
                     <label for="midname">Middle Name</label>
-                    <input type="text" id="midname" name="middlename" placeholder="Your middle name.." required
-                      [(ngModel)]="studEnroll.studentDetails[0].mName" #mName="ngModel">
-                    <small class="text-danger" *ngIf="mName.invalid && mName.touched">
+                    <input type="text" id="midname" name="mnameofstudent" placeholder="Your middle name.." required
+                      [(ngModel)]="studEnroll.studentDetails[0].mName" #mnameofstudent="ngModel">
+                    <small class="text-danger" *ngIf="mnameofstudent.invalid && mnameofstudent.touched">
                       Student middle name is required
                     </small>
                   </div>
                   <div class="lname col-6 col-md-4">
                     <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastname" placeholder="Your last" required
-                      [(ngModel)]="studEnroll.studentDetails[0].lName" #lName="ngModel">
-                    <small class="text-danger" *ngIf="lName.invalid && lName.touched">
+                    <input type="text" id="lname" name="lastnameofstudent" placeholder="Your last" required
+                      [(ngModel)]="studEnroll.studentDetails[0].lName" #lastnameofstudent="ngModel">
+                    <small class="text-danger" *ngIf="lastnameofstudent.invalid && lastnameofstudent.touched">
                       Student last name is required
                     </small>
                   </div>
@@ -250,9 +250,9 @@
                   </div>
                   <div class="emailid col-6 col-md-4">
                     <label for="emailId">Email ID</label>
-                    <input type="email" id="emailId" name="emailid" placeholder="Your email id.." required
-                      [(ngModel)]="studEnroll.studentDetails[0].email" #studentEmailid="ngModel">
-                    <small class="text-danger" *ngIf="studentEmailid.invalid && studentEmailid.touched">
+                    <input type="email" id="emailId" name="emailidofstudent" placeholder="Your email id.." required
+                      [(ngModel)]="studEnroll.studentDetails[0].email" #emailidofstudent="ngModel">
+                    <small class="text-danger" *ngIf="emailidofstudent.invalid && emailidofstudent.touched">
                       Student email ID is required
                     </small>
                   </div>
@@ -267,12 +267,12 @@
                   <div class="birthplace col-6 col-md-4">
                     <label for="birthPlace">Birth Place</label>
                     <input type="text" id="birthPlace" name="birthPlace" placeholder="Your birth place.." required
-                      [(ngModel)]="studEnroll.studentDetails[0].birthPlace" #studentBirthplace="ngModel">
+                      [(ngModel)]="studEnroll.studentDetails[0].birthPlace" #birthPlace="ngModel">
                   </div>
                   <div class="religion col-6 col-md-4">
                     <label for="religion">Religion</label>
                     <select id="religion" name="religion" class="form-select"
-                      (change)="onReligionChange(religionSelect.value)" #religionSelect required
+                      (change)="onReligionChange(religion.value)" #religion required
                       [(ngModel)]="studEnroll.studentDetails[0].religion">
                       <option value="">Select Religion</option>
                       <option [value]="religion.value" *ngFor="let religion of religions">{{religion.label}}</option>
@@ -281,7 +281,7 @@
                   <div class="category col-6 col-md-4">
                     <label for="category">Category</label>
                     <select id="category" name="category" class="form-select" required
-                      [(ngModel)]="studEnroll.studentDetails[0].category" #categorySelect>
+                      [(ngModel)]="studEnroll.studentDetails[0].category" #category>
                       <option value="">Select Category</option>
                       <option *ngFor="let caste of castes" [value]="caste">
                         {{ caste }}
@@ -290,12 +290,12 @@
                   </div>
                   <div class="caste col-6 col-md-4">
                     <label for="caste">Caste</label>
-                    <input type="text" id="caste" name="caste" placeholder="Your caste.." required ngModel
+                    <input type="text" id="caste" name="studentCaste" placeholder="Your caste.." required ngModel
                       #studentCaste="ngModel">
                   </div>
                   <div class="mothertongue col-6 col-md-4">
                     <label for="motherTongue">Mother Tongue</label>
-                    <select id="motherTongue" name="motherTongue" class="form-select" required ngModel
+                    <select id="motherTongue" name="studentMotherTongue" class="form-select" required ngModel
                       #studentMotherTongue="ngModel">
                       <option value="">Select Mother Tongue</option>
                       <option *ngFor="let language of languages" [value]="language">
@@ -305,8 +305,8 @@
                   </div>
                   <div class="physicaldisability col-6 col-md-4">
                     <label for="physicalDisability">If Any Physical Disability</label>
-                    <select id="physicalDisability" name="physicalDisability" class="form-select" #disabilitySelect
-                      (change)="onDisabilityChange(disabilitySelect.value)" required
+                    <select id="physicalDisability" name="physicalDisability" class="form-select" #physicalDisability
+                      (change)="onDisabilityChange(physicalDisability.value)" required
                       [(ngModel)]="studEnroll.studentDetails[0].disability">
                       <option value="">PhysicalDisability</option>
                       <option value="Yes">Yes</option>
@@ -323,7 +323,7 @@
                   </div>
                   <div class="standard col-6 col-md-4">
                     <label for="standard">Standard to which admission is sought</label>
-                    <select id="standard" name="standard" class="form-select" required
+                    <select id="standard" name="standardSelect" class="form-select" required
                       [(ngModel)]="studEnroll.studentDetails[0].admissionClass" #standardSelect>
                       <option value="">Select Standard</option>
                       <option value="Nursery">Nursery</option>
@@ -343,8 +343,8 @@
                   </div>
                   <div class="dob col-6 col-md-4">
                     <label for="dob">Date of Admission</label>
-                    <input type="date" id="dob" name="dob" placeholder="Your date of admission.." required
-                      [(ngModel)]="studEnroll.studentDetails[0].admissionDate" #dob="ngModel">
+                    <input type="date" id="dob" name="dobofadmission" placeholder="Your date of admission.." required
+                      [(ngModel)]="studEnroll.studentDetails[0].admissionDate" #dobofadmission="ngModel">
                     <small class="text-danger" *ngIf="dob.invalid && dob.touched">
                       Student date of admission is required
                     </small>
@@ -356,7 +356,7 @@
                   </div>
                   <div class="documents col-6 col-md-4">
                     <label for="documents">Documents</label>
-                    <select id="documents" name="documents" class="form-select" required
+                    <select id="documents" name="documentsSelect" class="form-select" required
                       [(ngModel)]="studEnroll.studentDetails[0].documentsSubmitted" #documentsSelect>
                       <option value="">Select Document Type</option>
                       <option value="birthCertificate">Birth Certificate</option>
