@@ -7,6 +7,7 @@ import { FormBuilder, NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { StudEntry, Students } from 'src/assets/Models/stud-entry';
 import { FatherDetail, MotherDetail, StudEnroll, StudentDetail } from 'src/assets/Models/stud-enroll';
+import { StudFormData } from 'src/assets/Models/StudFormData';
 
 export interface UserData {
   id: number;
@@ -40,6 +41,11 @@ export class StudManagementComponent {
   activeRow: string | null = null;
   showForm = false;
   userForm: any;
+  religions: any;
+  languages: any;
+  castes: any;
+  classes: any;
+  documents: any;
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.userForm = this.fb.group({ fName: [''], mName: [''], lname: [''], emailid: [''], phoneno: [''], name: [''], })
     this.dataService.postStudentData(this.userForm.value);
@@ -50,9 +56,8 @@ export class StudManagementComponent {
   }
   ngOnInit() {
     this.loadStudents();
-
-
   }
+
   loadStudents() {
     this.dataService.getStudents().subscribe((res: StudEnroll) => {
 
@@ -75,9 +80,9 @@ export class StudManagementComponent {
   }
 
   saveForm(form: any) {
-    
+
     if (!form || form.invalid) {
-      
+
       alert("Please fill all required fields");
       return;
     }
@@ -131,9 +136,6 @@ export class StudManagementComponent {
     if (event) { event.stopPropagation(); } // prevent document click closures if used
     this.activeRow = this.activeRow === id ? null : id;
   }
-
-
-
   onEdit(row: UserData) {
 
     const id = row.id;
@@ -156,33 +158,60 @@ export class StudManagementComponent {
     console.log('Delete', row);
     // close popover
     this.activeRow = null;
+    this.dataService.deleteStudentData(row.id).subscribe(
+      () => {
+        console.log('Student deleted successfully!');
+        this.loadStudents(); // Refresh the student list
+      }
+    );
   }
 
-  openAddForm() {
-    this.showForm = true;
+ openAddForm() {
+  this.showForm = true;
+  
+  // 1. Reset the validation state
+  if (this.studentForm) {
     this.studentForm.resetForm();
-    // optional: reset form state here
   }
 
-  public religions = [
-    { value: 'hindu', label: 'Hindu', castes: ['Brahmin', 'Kshatriya', 'Vaishya', 'Shudra'] },
-    { value: 'muslim', label: 'Muslim', castes: ['Sunni', 'Shia'] },
-    { value: 'christian', label: 'Christian', castes: ['Catholic', 'Protestant', 'Orthodox'] },
-    { value: 'sikh', label: 'Sikh', castes: ['Jat', 'Khatri', 'Arora'] },
-    { value: 'other', label: 'Other', castes: [] }
-  ];
+  // 2. Initialize the model to match structure
+  this.studEnroll = {
+    id: null, // Important for save vs update logic
+    studentDetails: [new StudentDetail()],
+    fatherDetails: [new FatherDetail()],
+    motherDetails: [new MotherDetail()]
+  };
 
-  selectedReligion: any = null;
-  castes: string[] = [];
+  this.castes = [];
 
-  onReligionChange(value: string) {
-    this.selectedReligion = this.religions.find(r => r.value === value);
-    this.castes = this.selectedReligion ? this.selectedReligion.castes : [];
-  }
+  // 4. Call the API
+  this.GetStudentsInputData();
+}
 
-  public languages: string[] = [
-    'English', 'Hindi', 'Spanish', 'French', 'German', 'Chinese', 'Japanese', 'Russian', 'Arabic', 'Portuguese'
-  ];
+GetStudentsInputData() {
+  this.dataService.getStudentsFormData().subscribe({
+    next: (res: any) => {
+      console.log("Form Data Received:", res);
+      
+      this.religions = res?.religions || [];
+      this.languages = res?.languages || [];
+      this.classes = res?.classes || [];
+      this.documents = res?.documents || [];
+    },
+    error: (err) => console.error("API Error:", err)
+  });
+}
+
+onReligionChange(value: string) {
+  // We filter from the local 'this.religions' array already fetched
+  const selected = this.religions.find((r: any) => r.value === value);
+  this.castes = selected ? selected.castes : [];
+  
+  // Optional: Reset the category selection when religion changes
+  this.studEnroll.studentDetails[0].category = '';
+}
+
+
 
   showDisabilityDetails = false;
 

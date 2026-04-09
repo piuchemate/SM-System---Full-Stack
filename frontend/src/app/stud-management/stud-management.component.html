@@ -6,14 +6,14 @@
   <div class="row">
     <!-- Add button shown when table is visible -->
     <div *ngIf="!showForm" class="col-md-3 offset-md-8 text-end">
-      <button class="add-btn btn btn-primary" (click)="openAddForm()" >
+      <button class="add-btn btn btn-primary" (click)="openAddForm()">
         <i class="fas fa-user-plus me-2"></i>Add Student
       </button>
     </div>
 
     <!-- Save / Clear shown when form is visible (same line, right aligned) -->
     <div *ngIf="showForm" class="col-12 d-flex justify-content-end gap-2">
-      <button class="btn btn-success" (click)="saveForm(studEnroll)">
+      <button class="btn btn-success" (click)="saveForm(studentForm)">
         <i class="fas fa-save me-2"></i>Save Form
       </button>
       <button class="btn btn-outline-secondary" type="reset" (click)="openAddForm()">
@@ -24,10 +24,10 @@
   <!-- Table Section -->
 
   <div *ngIf="!showForm" class="mat-elevation-z8 table-container">
-  <mat-form-field class="filter-field">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-  </mat-form-field>
+    <mat-form-field class="filter-field">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
     <table mat-table class="fixed-header-table" [dataSource]="dataSource" matSort>
 
       <!-- ID Column -->
@@ -65,7 +65,7 @@
           <button class="icon-btn delete" (click)="onDelete(row)" title="Delete">
             <i class="fas fa-trash-alt"></i>
           </button>
-          
+
         </td>
       </ng-container>
 
@@ -104,8 +104,9 @@
                 <div class="row">
                   <div class="fname col-6 col-md-4">
                     <label for="fNameofFather me-3">First Name</label>
-                    <input type="text" id="fname" name="fNameofFather" placeholder="Your name.." class="form-control" required
-                      [(ngModel)]="studEnroll.fatherDetails[0].fName" #fNameofFather="ngModel" [class.is-invalid]="fNameofFather.invalid && (fNameofFather.touched)">
+                    <input type="text" id="fname" name="fNameofFather" placeholder="Your name.." class="form-control"
+                      required [(ngModel)]="studEnroll.fatherDetails[0].fName" #fNameofFather="ngModel"
+                      [class.is-invalid]="fNameofFather.invalid && (fNameofFather.touched)">
                     <small class="text-danger" *ngIf="fNameofFather.invalid && (fNameofFather.touched )">
                       Father first name is required
                     </small>
@@ -120,7 +121,7 @@
                   </div>
                   <div class="lname col-6 col-md-4">
                     <label for="lName">Last Name</label>
-                    <input type="text" id="lNameofFather"  placeholder="Your last" required
+                    <input type="text" id="lNameofFather" placeholder="Your last" required
                       [(ngModel)]="studEnroll.fatherDetails[0].lName" name="lNameoffather" #lNameoffather="ngModel">
 
                     <small class="text-danger" *ngIf="lNameoffather.invalid && lNameoffather.touched">
@@ -163,8 +164,8 @@
                 <div class="row">
                   <div class="fname col-6 col-md-4">
                     <label for="fname me-3">First Name</label>
-                    <input type="text" id="fname" name="fnameofmother" placeholder="Your name.." class="form-control" required
-                      [(ngModel)]="studEnroll.motherDetails[0].fName" #fnameofmother="ngModel">
+                    <input type="text" id="fname" name="fnameofmother" placeholder="Your name.." class="form-control"
+                      required [(ngModel)]="studEnroll.motherDetails[0].fName" #fnameofmother="ngModel">
                     <small class="text-danger" *ngIf="fnameofmother.invalid && fnameofmother.touched">
                       Mother first name is required
                     </small>
@@ -221,9 +222,9 @@
                 <div class="row">
                   <div class="fname col-6 col-md-4">
                     <label for="fname me-3">First Name</label>
-                    <input type="text" id="fname" name="fNameofstudent" placeholder="Your name.." class="form-control" required
-                      [(ngModel)]="studEnroll.studentDetails[0].fName" #fNameofstudent="ngModel">
-                    <small class="text-danger" *ngIf="fNameofstudent.invalid && fNameofstudent.touched">
+                    <input type="text" id="fname" name="fNameofstudent" placeholder="Your name.." class="form-control"
+                      required [(ngModel)]="studEnroll.studentDetails[0].fName" #fNameofstudent="ngModel">
+                    <small class="text-danger" *ngIf="fNameofstudent.invalid && fNameofstudent.touched ">
                       Student first name is required
                     </small>
                   </div>
@@ -245,8 +246,11 @@
                   </div>
                   <div class="gender col-6 col-md-4">
                     <label for="gender">Gender</label>
-                    <input type="radio" id="male" name="gender" value="male"> Male
-                    <input type="radio" id="female" name="gender" value="female"> Female
+                    <input type="radio" id="male" name="gender" value="male" #gender="ngModel" [(ngModel)]="studEnroll.studentDetails[0].gender" required> Male
+                    <input type="radio" id="female" name="gender" value="female" #gender="ngModel" [(ngModel)]="studEnroll.studentDetails[0].gender" required> Female
+                    <small class="text-danger" *ngIf="gender.invalid && gender.touched">
+                      Gender is required
+                    </small>
                   </div>
                   <div class="emailid col-6 col-md-4">
                     <label for="emailId">Email ID</label>
@@ -268,50 +272,65 @@
                     <label for="birthPlace">Birth Place</label>
                     <input type="text" id="birthPlace" name="birthPlace" placeholder="Your birth place.." required
                       [(ngModel)]="studEnroll.studentDetails[0].birthPlace" #birthPlace="ngModel">
+                    <small class="text-danger" *ngIf="birthPlace.invalid && birthPlace.touched">
+                      Student Birthplace is required
+                    </small>
                   </div>
                   <div class="religion col-6 col-md-4">
                     <label for="religion">Religion</label>
                     <select id="religion" name="religion" class="form-select"
-                      (change)="onReligionChange(religion.value)" #religion required
-                      [(ngModel)]="studEnroll.studentDetails[0].religion">
-                      <option value="">Select Religion</option>
-                      <option [value]="religion.value" *ngFor="let religion of religions">{{religion.label}}</option>
+                      [(ngModel)]="studEnroll.studentDetails[0].religion" (ngModelChange)="onReligionChange($event)" #religion="ngModel" required>
+                      <option *ngFor="let rel of religions" [value]="rel.value">{{rel.label}}</option>
                     </select>
+                    <small class="text-danger" *ngIf="religion.invalid && religion.touched">
+                      Religion is required
+                    </small>
                   </div>
                   <div class="category col-6 col-md-4">
                     <label for="category">Category</label>
                     <select id="category" name="category" class="form-select" required
-                      [(ngModel)]="studEnroll.studentDetails[0].category" #category>
-                      <option value="">Select Category</option>
+                      [(ngModel)]="studEnroll.studentDetails[0].category" #category="ngModel">
                       <option *ngFor="let caste of castes" [value]="caste">
                         {{ caste }}
                       </option>
                     </select>
+                    <small class="text-danger" *ngIf="category.invalid && category.touched">
+                      Category is required
+                    </small>
                   </div>
                   <div class="caste col-6 col-md-4">
                     <label for="caste">Caste</label>
                     <input type="text" id="caste" name="studentCaste" placeholder="Your caste.." required ngModel
                       #studentCaste="ngModel">
+                      <small class="text-danger" *ngIf="studentCaste.invalid && studentCaste.touched">
+                      Caste is required
+                    </small>
                   </div>
                   <div class="mothertongue col-6 col-md-4">
                     <label for="motherTongue">Mother Tongue</label>
-                    <select id="motherTongue" name="studentMotherTongue" class="form-select" required ngModel
-                      #studentMotherTongue="ngModel">
-                      <option value="">Select Mother Tongue</option>
+                    <select id="motherTongue" name="studentMotherTongue" class="form-select" required
+                      [(ngModel)]="studEnroll.studentDetails[0].motherTongue" #studentMotherTongue="ngModel">
+                      <option value="" disabled selected>Select an option</option>
                       <option *ngFor="let language of languages" [value]="language">
                         {{ language }}
                       </option>
                     </select>
+                    <small class="text-danger" *ngIf="studentMotherTongue.invalid && studentMotherTongue.touched">
+                      Language is required
+                    </small>
                   </div>
                   <div class="physicaldisability col-6 col-md-4">
                     <label for="physicalDisability">If Any Physical Disability</label>
-                    <select id="physicalDisability" name="physicalDisability" class="form-select" #physicalDisability
+                    <select id="physicalDisability" name="physicalDisability" class="form-select" #physicalDisability="ngModel"
                       (change)="onDisabilityChange(physicalDisability.value)" required
                       [(ngModel)]="studEnroll.studentDetails[0].disability">
-                      <option value="">PhysicalDisability</option>
+                      <option value="" disabled selected>Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
+                    <small class="text-danger" *ngIf="physicalDisability.invalid && physicalDisability.touched">
+                      Physical Disability is required
+                    </small>
                     <textarea class="form-control mt-2" placeholder="Give more details"
                       [hidden]="!showDisabilityDetails"
                       [(ngModel)]="studEnroll.studentDetails[0].disabilityDetails"></textarea>
@@ -320,32 +339,28 @@
                     <label for="lastSchool">Last School Attended</label>
                     <input type="text" id="lastSchool" name="lastSchool" placeholder="Your last school.." required
                       [(ngModel)]="studEnroll.studentDetails[0].lastSchool" #lastSchool="ngModel">
+                    <small class="text-danger" *ngIf="lastSchool.invalid && lastSchool.touched">
+                      Last School Attend is required
+                    </small>
                   </div>
                   <div class="standard col-6 col-md-4">
                     <label for="standard">Standard to which admission is sought</label>
                     <select id="standard" name="standardSelect" class="form-select" required
-                      [(ngModel)]="studEnroll.studentDetails[0].admissionClass" #standardSelect>
-                      <option value="">Select Standard</option>
-                      <option value="Nursery">Nursery</option>
-                      <option value="LKG">LKG</option>
-                      <option value="UKG">UKG</option>
-                      <option value="1st">1st</option>
-                      <option value="2nd">2nd</option>
-                      <option value="3rd">3rd</option>
-                      <option value="4th">4th</option>
-                      <option value="5th">5th</option>
-                      <option value="6th">6th</option>
-                      <option value="7th">7th</option>
-                      <option value="8th">8th</option>
-                      <option value="9th">9th</option>
-                      <option value="10th">10th</option>
+                      [(ngModel)]="studEnroll.studentDetails[0].admissionClass" #standardSelect="ngModel">
+                      <option value="" disabled selected>Select an option</option>
+                      <option *ngFor="let class of classes" [value]="class">
+                        {{ class }}
+                      </option>
                     </select>
+                    <small class="text-danger" *ngIf="standardSelect.invalid && standardSelect.touched">
+                      Standard is required
+                    </small>
                   </div>
                   <div class="dob col-6 col-md-4">
                     <label for="dob">Date of Admission</label>
                     <input type="date" id="dob" name="dobofadmission" placeholder="Your date of admission.." required
                       [(ngModel)]="studEnroll.studentDetails[0].admissionDate" #dobofadmission="ngModel">
-                    <small class="text-danger" *ngIf="dob.invalid && dob.touched">
+                    <small class="text-danger" *ngIf="dobofadmission.invalid && dobofadmission.touched">
                       Student date of admission is required
                     </small>
                   </div>
@@ -353,22 +368,31 @@
                     <label for="address">Address</label>
                     <textarea id="address" name="address" placeholder="Your address.." required
                       [(ngModel)]="studEnroll.studentDetails[0].address" #address="ngModel"></textarea>
+                      <small class="text-danger" *ngIf="address.invalid && address.touched">
+                      *Address is required
+                    </small>
                   </div>
                   <div class="documents col-6 col-md-4">
                     <label for="documents">Documents</label>
-                    <select id="documents" name="documentsSelect" class="form-select" required
-                      [(ngModel)]="studEnroll.studentDetails[0].documentsSubmitted" #documentsSelect>
-                      <option value="">Select Document Type</option>
-                      <option value="birthCertificate">Birth Certificate</option>
-                      <option value="aadharCard">Aadhar Card</option>
-                      <option value="previousSchoolRecords">Previous School Records</option>
+                    <select id="documents" name="documentsSelect" class="form-select"
+                      placeholder="Please select document" required
+                      [(ngModel)]="studEnroll.studentDetails[0].documentsSubmitted" #documentsSelect="ngModel">
+                      <option value="" disabled selected>Select an option</option>
+                      <option *ngFor="let doc of documents" [value]="doc">
+                        {{ doc }}
                     </select>
                     <input type="file" id="documents" name="documents" multiple required>
+                     <small class="text-danger" *ngIf="documentsSelect.invalid && documentsSelect.touched">
+                      *Documents are required
+                    </small>
                   </div>
                   <div class="passportphoto col-6 col-md-4">
                     <label for="passportPhoto">Passport Size Photo</label>
-                    <input type="file" id="passportPhoto" name="passportPhoto" required
+                    <input type="file" id="passportPhoto" name="passportPhoto" 
                       [(ngModel)]="studEnroll.studentDetails[0].passportPhoto" #passportPhoto="ngModel">
+                      <!-- <small class="text-danger" *ngIf="documentsSelect.invalid && documentsSelect.touched">
+                      *Documents are required
+                    </small> -->
                   </div>
                 </div>
               </div>

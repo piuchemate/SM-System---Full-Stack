@@ -38,5 +38,5 @@ export interface StudEnroll {
   studentDetails: StudentDetail[];
   fatherDetails: FatherDetail[];
   motherDetails: MotherDetail[];
-  id?: number;
+  id?: number | null;
 }

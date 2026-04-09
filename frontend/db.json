@@ -2,22 +2,6 @@
   "students": [
     {
       "studentDetails": [
-        {}
-      ],
-      "fatherDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com"
-        }
-      ],
-      "motherDetails": [
-        {}
-      ],
-      "id": 1
-    },
-    {
-      "studentDetails": [
         {
           "fName": "Priya",
           "lName": "Chemate",
@@ -61,52 +45,6 @@
           "fName": "Priya",
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
-          "mName": "fgfggf",
-          "birthPlace": "Shevgaon",
-          "religion": "hindu",
-          "lastSchool": "vxgresdtj",
-          "admissionDate": "2026-02-17",
-          "category": "Vaishya"
-        }
-      ],
-      "fatherDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
-          "mName": "govind",
-          "phone": "09823208383"
-        }
-      ],
-      "motherDetails": [
-        {}
-      ],
-      "id": 3
-    },
-    {
-      "studentDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
-          "mName": "fgfggf",
-          "admissionDate": "2026-03-03"
-        }
-      ],
-      "fatherDetails": [
-        {}
-      ],
-      "motherDetails": [
-        {}
-      ],
-      "id": 4
-    },
-    {
-      "studentDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
           "birthPlace": "Shevgaon",
           "admissionDate": "2026-02-01"
         }
@@ -124,28 +62,6 @@
         }
       ],
       "id": 5
-    },
-    {
-      "studentDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
-          "dob": "2026-02-01",
-          "admissionClass": "4th"
-        }
-      ],
-      "fatherDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com"
-        }
-      ],
-      "motherDetails": [
-        {}
-      ],
-      "id": 6
     },
     {
       "studentDetails": [
@@ -187,6 +103,48 @@
         }
       ],
       "id": 8
+    },
+    {
+      "id": 9,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
     }
   ]
 }

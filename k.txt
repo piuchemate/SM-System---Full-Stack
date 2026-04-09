@@ -2,8 +2,9 @@
 Server running for db.json - 
 
     run terminal from folder where db.jon exist and run below command (PS C:\Users\scs\Desktop\SM-System---Full-Stack\frontend>)-
-    json-server --watch db.json --port 3000
-
+    db.json =  json-server --watch db.json --port 3000
+    studentform_input.json = json-server --watch studentform_input.json --port 3001
+    
 Tu run project in server - 
 
 ng serve
