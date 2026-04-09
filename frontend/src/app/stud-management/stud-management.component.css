@@ -87,7 +87,10 @@ table {
 
 
 /* Form Section*/
-
+table th{
+  background-color: rgb(61, 74, 74);
+  color: white;
+}
 .formInfo label {
   display: block;
   margin-bottom: 6px;

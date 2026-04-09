@@ -28,7 +28,7 @@ export class StudManagementComponent {
   description = 'Access and manage your student information here.';
 
 
-  displayedColumns: string[] = ['id', 'firstName', 'age', 'class', 'actions'];
+  displayedColumns: string[] = ['id', 'firstName', 'dob', 'class', 'actions'];
   dataSource = new MatTableDataSource<Students>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -46,6 +46,7 @@ export class StudManagementComponent {
   castes: any;
   classes: any;
   documents: any;
+  showDisabilityDetails = false;
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.userForm = this.fb.group({ fName: [''], mName: [''], lname: [''], emailid: [''], phoneno: [''], name: [''], })
     this.dataService.postStudentData(this.userForm.value);
@@ -71,7 +72,7 @@ export class StudManagementComponent {
       const formatted = res.map((item: StudEnroll) => ({
         id: item.id,
         firstName: item.studentDetails[0].fName + ' ' + item.studentDetails[0].lName || '',
-        age: item.studentDetails[0].dob || '',
+        dob: item.studentDetails[0].dob || '',
         class: item.studentDetails[0].admissionClass || ''
       }));
 
@@ -148,7 +149,7 @@ export class StudManagementComponent {
       // Assign full object to form model
       this.studEnroll = res;
     });
-
+this.GetStudentsInputData();
     this.activeRow = null;
   }
 
@@ -166,54 +167,50 @@ export class StudManagementComponent {
     );
   }
 
- openAddForm() {
-  this.showForm = true;
-  
-  // 1. Reset the validation state
-  if (this.studentForm) {
-    this.studentForm.resetForm();
+  openAddForm() {
+    this.showForm = true;
+
+    // 1. Reset the validation state
+    if (this.studentForm) {
+      this.studentForm.resetForm();
+    }
+
+    // 2. Initialize the model to match structure
+    this.studEnroll = {
+      id: null, // Important for save vs update logic
+      studentDetails: [new StudentDetail()],
+      fatherDetails: [new FatherDetail()],
+      motherDetails: [new MotherDetail()]
+    };
+
+    this.castes = [];
+
+    // 4. Call the API
+    this.GetStudentsInputData();
   }
 
-  // 2. Initialize the model to match structure
-  this.studEnroll = {
-    id: null, // Important for save vs update logic
-    studentDetails: [new StudentDetail()],
-    fatherDetails: [new FatherDetail()],
-    motherDetails: [new MotherDetail()]
-  };
+  GetStudentsInputData() {
+    this.dataService.getStudentsFormData().subscribe({
+      next: (res: any) => {
+        console.log("Form Data Received:", res);
 
-  this.castes = [];
+        this.religions = res?.religions || [];
+        this.languages = res?.languages || [];
+        this.classes = res?.classes || [];
+        this.documents = res?.documents || [];
+      },
+      error: (err) => console.error("API Error:", err)
+    });
+  }
 
-  // 4. Call the API
-  this.GetStudentsInputData();
-}
+  onReligionChange(value: string) {
+    // We filter from the local 'this.religions' array already fetched
+    const selected = this.religions.find((r: any) => r.value === value);
+    this.castes = selected ? selected.castes : [];
 
-GetStudentsInputData() {
-  this.dataService.getStudentsFormData().subscribe({
-    next: (res: any) => {
-      console.log("Form Data Received:", res);
-      
-      this.religions = res?.religions || [];
-      this.languages = res?.languages || [];
-      this.classes = res?.classes || [];
-      this.documents = res?.documents || [];
-    },
-    error: (err) => console.error("API Error:", err)
-  });
-}
-
-onReligionChange(value: string) {
-  // We filter from the local 'this.religions' array already fetched
-  const selected = this.religions.find((r: any) => r.value === value);
-  this.castes = selected ? selected.castes : [];
-  
-  // Optional: Reset the category selection when religion changes
-  this.studEnroll.studentDetails[0].category = '';
-}
-
-
-
-  showDisabilityDetails = false;
+    // Optional: Reset the category selection when religion changes
+    this.studEnroll.studentDetails[0].category = '';
+  }
 
   onDisabilityChange(value: string) {
     this.showDisabilityDetails = value === 'Yes';

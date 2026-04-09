@@ -13,9 +13,22 @@
 
     <!-- Save / Clear shown when form is visible (same line, right aligned) -->
     <div *ngIf="showForm" class="col-12 d-flex justify-content-end gap-2">
-      <button class="btn btn-success" (click)="saveForm(studentForm)">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModa3" title="saveForm">
         <i class="fas fa-save me-2"></i>Save Form
       </button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModa3" tabindex="-1" aria-labelledby="exampleModalLabe3"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="mb-3"><b> Please confirm that you want to save this form ?</b></div>       
+                  <button type="button" class="btn btn-secondary btn-sm me-2" data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" (click)="saveForm(studentForm)">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
       <button class="btn btn-outline-secondary" type="reset" (click)="openAddForm()">
         <i class="fas fa-broom me-2"></i>Clear Form
       </button>
@@ -37,9 +50,9 @@
       </ng-container>
 
       <!-- Progress Column -->
-      <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
-        <td mat-cell *matCellDef="let row"> {{row.age}} </td>
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+        <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -58,14 +71,39 @@
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let row" class="actions-cell">
           <!-- breadcrumb / ellipsis icon (Font Awesome) -->
-
-          <button class="icon-btn edit" (click)="onEdit(row)" title="Edit">
+           <!-- Button trigger modal -->
+          <button class="icon-btn edit"  title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fas fa-edit"></i>
-          </button>
-          <button class="icon-btn delete" (click)="onDelete(row)" title="Delete">
+          </button>    
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="mb-3"> Please confirm that you want to proceed with editing  {{row.id}} record ?</div>       
+                  <button type="button" class="btn btn-secondary btn-sm me-2" data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" (click)="onEdit(row)">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="icon-btn delete" data-bs-toggle="modal" data-bs-target="#exampleModa2" title="Delete">
             <i class="fas fa-trash-alt"></i>
           </button>
-
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModa2" tabindex="-1" aria-labelledby="exampleModalLabe2"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="mb-3"><b> Please confirm that you want to proceed with deleting this record ?</b></div>       
+                  <button type="button" class="btn btn-secondary btn-sm me-2" data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" (click)="onDelete(row)">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
       </ng-container>
 
@@ -246,8 +284,10 @@
                   </div>
                   <div class="gender col-6 col-md-4">
                     <label for="gender">Gender</label>
-                    <input type="radio" id="male" name="gender" value="male" #gender="ngModel" [(ngModel)]="studEnroll.studentDetails[0].gender" required> Male
-                    <input type="radio" id="female" name="gender" value="female" #gender="ngModel" [(ngModel)]="studEnroll.studentDetails[0].gender" required> Female
+                    <input type="radio" id="male" name="gender" value="male" #gender="ngModel"
+                      [(ngModel)]="studEnroll.studentDetails[0].gender" required> Male
+                    <input type="radio" id="female" name="gender" value="female" #gender="ngModel"
+                      [(ngModel)]="studEnroll.studentDetails[0].gender" required> Female
                     <small class="text-danger" *ngIf="gender.invalid && gender.touched">
                       Gender is required
                     </small>
@@ -279,7 +319,8 @@
                   <div class="religion col-6 col-md-4">
                     <label for="religion">Religion</label>
                     <select id="religion" name="religion" class="form-select"
-                      [(ngModel)]="studEnroll.studentDetails[0].religion" (ngModelChange)="onReligionChange($event)" #religion="ngModel" required>
+                      [(ngModel)]="studEnroll.studentDetails[0].religion" (ngModelChange)="onReligionChange($event)"
+                      #religion="ngModel" required>
                       <option *ngFor="let rel of religions" [value]="rel.value">{{rel.label}}</option>
                     </select>
                     <small class="text-danger" *ngIf="religion.invalid && religion.touched">
@@ -302,7 +343,7 @@
                     <label for="caste">Caste</label>
                     <input type="text" id="caste" name="studentCaste" placeholder="Your caste.." required ngModel
                       #studentCaste="ngModel">
-                      <small class="text-danger" *ngIf="studentCaste.invalid && studentCaste.touched">
+                    <small class="text-danger" *ngIf="studentCaste.invalid && studentCaste.touched">
                       Caste is required
                     </small>
                   </div>
@@ -321,8 +362,8 @@
                   </div>
                   <div class="physicaldisability col-6 col-md-4">
                     <label for="physicalDisability">If Any Physical Disability</label>
-                    <select id="physicalDisability" name="physicalDisability" class="form-select" #physicalDisability="ngModel"
-                      (change)="onDisabilityChange(physicalDisability.value)" required
+                    <select id="physicalDisability" name="physicalDisability" class="form-select"
+                      #physicalDisability="ngModel" (change)="onDisabilityChange(physicalDisability.value)" required
                       [(ngModel)]="studEnroll.studentDetails[0].disability">
                       <option value="" disabled selected>Select an option</option>
                       <option value="Yes">Yes</option>
@@ -368,7 +409,7 @@
                     <label for="address">Address</label>
                     <textarea id="address" name="address" placeholder="Your address.." required
                       [(ngModel)]="studEnroll.studentDetails[0].address" #address="ngModel"></textarea>
-                      <small class="text-danger" *ngIf="address.invalid && address.touched">
+                    <small class="text-danger" *ngIf="address.invalid && address.touched">
                       *Address is required
                     </small>
                   </div>
@@ -382,15 +423,15 @@
                         {{ doc }}
                     </select>
                     <input type="file" id="documents" name="documents" multiple required>
-                     <small class="text-danger" *ngIf="documentsSelect.invalid && documentsSelect.touched">
+                    <small class="text-danger" *ngIf="documentsSelect.invalid && documentsSelect.touched">
                       *Documents are required
                     </small>
                   </div>
                   <div class="passportphoto col-6 col-md-4">
                     <label for="passportPhoto">Passport Size Photo</label>
-                    <input type="file" id="passportPhoto" name="passportPhoto" 
+                    <input type="file" id="passportPhoto" name="passportPhoto"
                       [(ngModel)]="studEnroll.studentDetails[0].passportPhoto" #passportPhoto="ngModel">
-                      <!-- <small class="text-danger" *ngIf="documentsSelect.invalid && documentsSelect.touched">
+                    <!-- <small class="text-danger" *ngIf="documentsSelect.invalid && documentsSelect.touched">
                       *Documents are required
                     </small> -->
                   </div>

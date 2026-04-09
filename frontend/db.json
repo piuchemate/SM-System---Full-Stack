@@ -2,69 +2,6 @@
   "students": [
     {
       "studentDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
-          "mName": "govind",
-          "birthPlace": "Shevgaon",
-          "religion": "hindu",
-          "category": "Brahmin",
-          "disability": "No",
-          "lastSchool": "vxgresdtj",
-          "admissionClass": "5th",
-          "admissionDate": "2026-03-04",
-          "address": "A4-807, Rohan Ananta, Tathawade, Pimpri Chinchwad, Pune",
-          "documentsSubmitted": "birthCertificate",
-          "passportPhoto": "C:\\fakepath\\passport.png"
-        }
-      ],
-      "fatherDetails": [
-        {
-          "fName": "Govind",
-          "lName": "Chemate",
-          "email": "piu.chemate@gmail.com",
-          "mName": "Babasaheb",
-          "phone": "9823208383"
-        }
-      ],
-      "motherDetails": [
-        {
-          "fName": "Lata",
-          "mName": "govind",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
-          "phone": "09823208383"
-        }
-      ],
-      "id": 2
-    },
-    {
-      "studentDetails": [
-        {
-          "fName": "Priya",
-          "lName": "Chemate",
-          "email": "piuchemate@gmail.com",
-          "birthPlace": "Shevgaon",
-          "admissionDate": "2026-02-01"
-        }
-      ],
-      "fatherDetails": [
-        {
-          "fName": "gh",
-          "mName": "g"
-        }
-      ],
-      "motherDetails": [
-        {
-          "fName": "fvw",
-          "mName": "cq"
-        }
-      ],
-      "id": 5
-    },
-    {
-      "studentDetails": [
         {}
       ],
       "fatherDetails": [
@@ -75,7 +12,7 @@
       "motherDetails": [
         {}
       ],
-      "id": 7
+      "id": 3
     },
     {
       "studentDetails": [
@@ -83,8 +20,20 @@
           "fName": "Pyyyyyy",
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
-          "religion": "christian",
-          "category": "Protestant"
+          "religion": "sikh",
+          "category": "Khatri",
+          "mName": "ghff",
+          "gender": "male",
+          "dob": "2026-04-05",
+          "motherTongue": "Japanese",
+          "disability": "No",
+          "lastSchool": "AC",
+          "birthPlace": "CE",
+          "admissionClass": "9th",
+          "address": "CWQC",
+          "documentsSubmitted": "Aadhar Card",
+          "passportPhoto": "C:\\fakepath\\income.png",
+          "admissionDate": "2026-04-30"
         }
       ],
       "fatherDetails": [
@@ -92,17 +41,188 @@
           "fName": "ABCD",
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
-          "phone": "09823208383"
+          "phone": "09823208383",
+          "mName": "ndhuygydu"
         }
       ],
       "motherDetails": [
         {
           "fName": "Lata",
           "mName": "ghj",
-          "lName": "Chemate"
+          "lName": "Chemate",
+          "phone": "76564",
+          "email": "mnsbwxdvygsfqv"
         }
       ],
-      "id": 8
+      "id": 4
+    },
+    {
+      "id": 5,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
     },
     {
       "id": 9,
@@ -142,6 +262,173 @@
           "mName": "Govind",
           "lName": "Chemate",
           "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "studentDetails": [
+        {
+          "fName": "Swara",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "swarachemate@gmail.com",
+          "motherTongue": "Hindi",
+          "disability": "No",
+          "admissionClass": "5th",
+          "documentsSubmitted": "Aadhar Card",
+          "gender": "female",
+          "dob": "2026-04-13",
+          "birthPlace": "Sangmner",
+          "religion": "hindu",
+          "category": "Brahmin",
+          "lastSchool": "3/02/2025",
+          "admissionDate": "2026-04-27",
+          "address": "Shriram colony Datta Nagar Shevgoan",
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Govind",
+          "mName": "Babasaheb",
+          "lName": "Chemate",
+          "email": "govindchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "Lata",
+          "mName": "Govind",
+          "lName": "Chemate",
+          "email": "latachemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "studentDetails": [
+        {
+          "motherTongue": "Japanese",
+          "disability": "No",
+          "admissionClass": "10th",
+          "documentsSubmitted": "Birth Certificate",
+          "fName": "Priya",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "mName": "ghff",
+          "dob": "2026-04-05",
+          "birthPlace": "CE",
+          "lastSchool": "AC",
+          "admissionDate": "2026-04-30",
+          "religion": "christian",
+          "category": "Protestant",
+          "gender": "female",
+          "address": "dcda"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "ABCD",
+          "mName": "ndhuygydu",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "dcfddc",
+          "mName": "dcd",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
           "phone": "09823208383"
         }
       ]

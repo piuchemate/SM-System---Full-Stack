@@ -1,13 +1,13 @@
 export class Students {
   id!: string;
   firstName!: string;
-  age!: number;
+  dob!: number;
   class!: string;
 
   constructor(s: any) {
     this.id = s.id;
     this.firstName = s.firstName;
-    this.age = s.age;
+    this.dob = s.dob;
     this.class = s.class;
   }
 }
