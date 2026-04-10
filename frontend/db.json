@@ -461,5 +461,43 @@
         }
       ]
     }
+  ],
+  "teachers": [
+    {
+      "id": 101,
+      "teacherDetails": [
+        {
+          "fName": "Jane",
+          "mName": "Anne",
+          "lName": "Doe",
+          "gender": "Female",
+          "email": "jane.doe@school.edu",
+          "dob": "1985-05-15",
+          "birthPlace": "Springfield",
+          "religion": "christian",
+          "category": "Orthodox",
+          "caste": "N/A",
+          "motherTongue": "English",
+          "disability": false,
+          "disabilityDetails": "",
+          "lastSchool": "Lincoln High School",
+          "joiningDate": "2023-08-01",
+          "joiningClass": "10th Grade",
+          "address": "123 Academic Way, Education City",
+          "phone": 5550198,
+          "documentsSubmitted": "Degree, Teaching Certificate",
+          "passportPhoto": "base64_encoded_string_or_url_here"
+        }
+      ],
+      "emergencyDetails": [
+        {
+          "fName": "John",
+          "mName": "Robert",
+          "lName": "Doe",
+          "email": "john.emergency@provider.com",
+          "phone": 5550911
+        }
+      ]
+    }
   ]
 }

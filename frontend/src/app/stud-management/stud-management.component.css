@@ -13,6 +13,13 @@
   overflow: auto;
 }
 
+input.ng-invalid.ng-touched {
+  border: 1px solid red !important;
+}
+
+input.ng-invalid.ng-dirty {
+  border: 1px solid red !important;
+}
 /* Make the header sticky ... */
 /* .fixed-header-table .mat-header-row,
 .fixed-header-table .mat-header-row .mat-header-cell,

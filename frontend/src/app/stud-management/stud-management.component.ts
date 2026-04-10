@@ -2,10 +2,10 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { DataService } from './data.service';
+import { DataService } from '../data.service';
 import { FormBuilder, NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { StudEntry, Students } from 'src/assets/Models/stud-entry';
+import { Entry, Entries } from 'src/assets/Models/entry';
 import { FatherDetail, MotherDetail, StudEnroll, StudentDetail } from 'src/assets/Models/stud-enroll';
 import { StudFormData } from 'src/assets/Models/StudFormData';
 
@@ -29,7 +29,7 @@ export class StudManagementComponent {
 
 
   displayedColumns: string[] = ['id', 'firstName', 'dob', 'class', 'actions'];
-  dataSource = new MatTableDataSource<Students>();
+  dataSource = new MatTableDataSource<Entries>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -76,7 +76,7 @@ export class StudManagementComponent {
         class: item.studentDetails[0].admissionClass || ''
       }));
 
-      this.dataSource.data = formatted.map((s: any) => new Students(s));
+      this.dataSource.data = formatted.map((s: any) => new Entries(s));
     });
   }
 

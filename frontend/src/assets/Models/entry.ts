@@ -1,4 +1,4 @@
-export class Students {
+export class Entries {
   id!: string;
   firstName!: string;
   dob!: number;
@@ -12,6 +12,6 @@ export class Students {
   }
 }
 
-export interface StudEntry {
-  students: Students[];
+export interface Entry {
+  entries: Entries[];
 }
