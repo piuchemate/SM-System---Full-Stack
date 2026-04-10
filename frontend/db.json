@@ -2,20 +2,6 @@
   "students": [
     {
       "studentDetails": [
-        {}
-      ],
-      "fatherDetails": [
-        {
-          "fName": "trial"
-        }
-      ],
-      "motherDetails": [
-        {}
-      ],
-      "id": 3
-    },
-    {
-      "studentDetails": [
         {
           "fName": "Pyyyyyy",
           "lName": "Chemate",
@@ -417,6 +403,48 @@
       "fatherDetails": [
         {
           "fName": "ABCD",
+          "mName": "ndhuygydu",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ],
+      "motherDetails": [
+        {
+          "fName": "dcfddc",
+          "mName": "dcd",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "phone": "09823208383"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "studentDetails": [
+        {
+          "motherTongue": "French",
+          "disability": "No",
+          "admissionClass": "9th",
+          "documentsSubmitted": "Aadhar Card",
+          "fName": "Priya",
+          "mName": "ghff",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "dob": "2026-04-05",
+          "birthPlace": "CE",
+          "caste": "sdacf",
+          "lastSchool": "AC",
+          "admissionDate": "2026-04-30",
+          "religion": "christian",
+          "category": "Protestant",
+          "gender": "female",
+          "address": "dcda"
+        }
+      ],
+      "fatherDetails": [
+        {
+          "fName": "Priyqwfwe",
           "mName": "ndhuygydu",
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
