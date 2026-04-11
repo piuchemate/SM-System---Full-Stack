@@ -4,10 +4,10 @@ import { MsalService } from '@azure/msal-angular';
 import * as powerbi from 'powerbi-client';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
   styleUrls: ['../app.component.css']  // reuse app-level styles for layout
 })
-export class DashboardComponent {
+export class NavBarComponent {
   // Layout container for sidebar + routed pages
 }

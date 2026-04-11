@@ -6,26 +6,21 @@ import { TeacherManagementComponent } from './teach-management/teach-management.
 import { ClassManagementComponent } from './class-management/class-management.component';
 // import { AttendanceComponent } from './attendance/attendance.component';
 import { SettingsComponent } from './settings/settings.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ClassStudComponent } from './class-management/class-stud/class-stud.component';
-import { ClassTeachComponent } from './class-management/class-teach/class-teach.component';
+import { NavBarComponent } from './navbar/navbar.component';
 import { CardTileComponent } from './card-tile/card-tile.component';
+import { DashboardComponent } from './dashboard.component/dashboard.component';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent, // layout
+    component: NavBarComponent, // layout
     children: [
-      { path: '', component: CardTileComponent }, // <-- default child view
+      { path: '', component: DashboardComponent }, // <-- default child view
+      { path: 'card', component: CardTileComponent }, // <-- default child view
       { path: 'dashboard', redirectTo: '', pathMatch: 'full' },
       { path: 'studentmanagement', component: StudManagementComponent },
       { path: 'teachermanagement', component: TeacherManagementComponent },
       { path: 'classmanagement', component: ClassManagementComponent },
-      // { path: 'attendance', component: AttendanceComponent },
-      // { path: 'reports', component: ReportsComponent },
-      { path: 'settings', component: SettingsComponent },
-      { path: 'class-stud', component: ClassStudComponent },
-      { path: 'class-teach', component: ClassTeachComponent }
-    ]
+      { path: 'settings', component: SettingsComponent }    ]
   },
   { path: '**', redirectTo: '' }
 ];

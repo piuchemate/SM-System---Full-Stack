@@ -7,7 +7,7 @@ import { TeacherManagementComponent } from './teach-management/teach-management.
 import { ClassManagementComponent } from './class-management/class-management.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {  NavBarComponent } from './navbar/navbar.component';
 import { CardTileComponent } from './card-tile/card-tile.component';
 import { CommonModule } from '@angular/common';
 import { MsalModule, MsalGuard } from '@azure/msal-angular';
@@ -24,11 +24,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { DashboardComponent } from './dashboard.component/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    NavBarComponent,
     StudManagementComponent,
     TeacherManagementComponent,
     ClassManagementComponent,
@@ -36,6 +37,7 @@ import { NgForm } from '@angular/forms';
     ReportsComponent,
     SettingsComponent,
     CardTileComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
