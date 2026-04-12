@@ -14,14 +14,6 @@
     overflow: auto;
 }
 
-input.ng-invalid.ng-touched {
-    border: 1px solid red !important;
-}
-
-input.ng-invalid.ng-dirty {
-    border: 1px solid red !important;
-}
-
 /* Make the header sticky ... */
 /* .fixed-header-table .mat-header-row,
 .fixed-header-table .mat-header-row .mat-header-cell,
@@ -111,29 +103,10 @@ table th {
     color: white;
 }
 
+
 .formInfo label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 
-/* Ensure inputs sit under labels and fill the column */
-.formInfo input[type="text"],
-.formInfo input[type="email"],
-.formInfo input[type="tel"],
-.formInfo select,
-.formInfo textarea {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: .375rem .5rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-}
-
-/* add vertical spacing between form fields in each column */
-.formInfo .row>div {
-    margin-bottom: 12px;
-}
-
-/* ...existing code... */

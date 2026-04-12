@@ -25,6 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { DashboardComponent } from './dashboard.component/dashboard.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,10 @@ import { DashboardComponent } from './dashboard.component/dashboard.component';
     CommonModule,
     AppRoutingModule,
     FormsModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {

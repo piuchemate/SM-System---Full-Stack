@@ -3,11 +3,11 @@
     {
       "studentDetails": [
         {
-          "fName": "Pyyyyyy",
+          "fName": "Priya",
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
-          "religion": "sikh",
-          "category": "Khatri",
+          "religion": "muslim",
+          "category": "Shia",
           "mName": "ghff",
           "gender": "male",
           "dob": "2026-04-05",
@@ -17,14 +17,15 @@
           "birthPlace": "CE",
           "admissionClass": "9th",
           "address": "CWQC",
-          "documentsSubmitted": "Aadhar Card",
-          "passportPhoto": "C:\\fakepath\\income.png",
-          "admissionDate": "2026-04-30"
+          "documentsSubmitted": "Previous School Report Card",
+          "passportPhoto": "C:\\fakepath\\Screenshot_9-4-2026_17590_localhost.jpeg",
+          "admissionDate": "2026-04-30",
+          "caste": "w"
         }
       ],
       "fatherDetails": [
         {
-          "fName": "ABCD",
+          "fName": "govinf",
           "lName": "Chemate",
           "email": "piuchemate@gmail.com",
           "phone": "09823208383",
@@ -88,7 +89,7 @@
       "id": 6,
       "studentDetails": [
         {
-          "fName": "Swara",
+          "fName": "Sonu",
           "mName": "Govind",
           "lName": "Chemate",
           "email": "swarachemate@gmail.com",
@@ -99,12 +100,13 @@
           "gender": "female",
           "dob": "2026-04-13",
           "birthPlace": "Sangmner",
-          "religion": "hindu",
-          "category": "Brahmin",
+          "religion": "muslim",
+          "category": "Shia",
           "lastSchool": "3/02/2025",
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
-          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
+          "caste": "vanjari"
         }
       ],
       "fatherDetails": [
@@ -298,7 +300,7 @@
       "id": 11,
       "studentDetails": [
         {
-          "fName": "Swara",
+          "fName": "Monu",
           "mName": "Govind",
           "lName": "Chemate",
           "email": "swarachemate@gmail.com",
@@ -310,11 +312,12 @@
           "dob": "2026-04-13",
           "birthPlace": "Sangmner",
           "religion": "hindu",
-          "category": "Brahmin",
+          "category": "Kshatriya",
           "lastSchool": "3/02/2025",
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
-          "passportPhoto": "C:\\fakepath\\passportImage.jpeg"
+          "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
+          "caste": "wvw"
         }
       ],
       "fatherDetails": [

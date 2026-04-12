@@ -9,6 +9,10 @@ import { Entry, Entries } from 'src/assets/Models/entry';
 import {  EmergencyDetail,  } from 'src/assets/Models/teach-enroll';
 import { TeachEnroll, TeacherDetail } from 'src/assets/Models/teach-enroll';
 import { StudFormData } from 'src/assets/Models/StudFormData';
+import { MatRadioModule } from '@angular/material/radio'; // Import this
+import { MatSelectModule } from '@angular/material/select'; // You'll also need this for mat-select
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; // Required for basic JS dates
 
 export interface UserData {
   id: number;
