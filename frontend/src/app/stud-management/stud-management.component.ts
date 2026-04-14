@@ -7,7 +7,7 @@ import { FormBuilder, NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Entry, Entries } from 'src/assets/Models/entry';
 import { FatherDetail, MotherDetail, StudEnroll, StudentDetail } from 'src/assets/Models/stud-enroll';
-import { StudFormData } from 'src/assets/Models/StudFormData';
+import { FormsData } from 'src/assets/Models/FormsData';
 import { MatRadioModule } from '@angular/material/radio'; // Import this
 import { MatSelectModule } from '@angular/material/select'; // You'll also need this for mat-select
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -208,14 +208,14 @@ this.GetStudentsInputData();
   }
 
   GetStudentsInputData() {
-    this.dataService.getStudentsFormData().subscribe({
+    this.dataService.getFormInputData().subscribe({
       next: (res: any) => {
         console.log("Form Data Received:", res);
 
-        this.religions = res?.religions || [];
-        this.languages = res?.languages || [];
-        this.classes = res?.classes || [];
-        this.documents = res?.documents || [];
+        this.religions = res?.FormData?.religions || [];
+        this.languages = res?.FormData?.languages || [];
+        this.classes = res?.FormData?.classes || [];
+        this.documents = res?.FormData?.documents || [];
       },
       error: (err) => console.error("API Error:", err)
     });

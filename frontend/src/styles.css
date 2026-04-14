@@ -8,3 +8,19 @@
 .sidebar{
   background-color: rgb(61, 74, 74);
 }
+
+:root{
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 70px;
+  --topbar-height: 56px;
+  --nav-height: 76px;
+}
+
+html, body, app-root, #wrapper{
+  height: 100%;
+  margin: 0;
+}
+
+.modal-dialog {
+  top: var(--nav-height);
+}

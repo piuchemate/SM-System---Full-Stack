@@ -1,4 +1,4 @@
-export class TeacherDetail {
+export class StaffDetails {
   fName!: string;
   mName!: string;
   lName!: string;
@@ -12,13 +12,15 @@ export class TeacherDetail {
   motherTongue!: string;
   disability!: boolean;
   disabilityDetails!: string;
-  lastSchool!: string;
+  pastexperience!: string;
   joiningDate!: Date;
   joiningClass!: string;
   address!: string;
   phone!: number;
   documentsSubmitted!: string;
   passportPhoto!: string;
+  department!: string;
+  position!: string;
 }
 export class EmergencyDetail {
   fName!: string;
@@ -27,8 +29,8 @@ export class EmergencyDetail {
   email!: string;
   phone!: number;
 }
-export interface TeachEnroll {
-  teacherDetails: TeacherDetail[];
-    emergencyDetails: EmergencyDetail[];
+export interface StaffEnroll {
+  staffDetails: StaffDetails[];
+  emergencyDetails: EmergencyDetail[];
   id?: number | null;
 }

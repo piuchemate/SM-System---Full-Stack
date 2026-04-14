@@ -2,13 +2,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StudManagementComponent } from './stud-management/stud-management.component';
-import { TeacherManagementComponent } from './teach-management/teach-management.component';
+// import { TeacherManagementComponent } from './staff-management/staff-management.component';
 import { ClassManagementComponent } from './class-management/class-management.component';
 // import { AttendanceComponent } from './attendance/attendance.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NavBarComponent } from './navbar/navbar.component';
 import { CardTileComponent } from './card-tile/card-tile.component';
 import { DashboardComponent } from './dashboard.component/dashboard.component';
+import {StaffManagementComponent} from './staff-management/staff-management.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +19,7 @@ const routes: Routes = [
       { path: 'card', component: CardTileComponent }, // <-- default child view
       { path: 'dashboard', redirectTo: '', pathMatch: 'full' },
       { path: 'studentmanagement', component: StudManagementComponent },
-      { path: 'teachermanagement', component: TeacherManagementComponent },
+      { path: 'staffmanagement', component: StaffManagementComponent },
       { path: 'classmanagement', component: ClassManagementComponent },
       { path: 'settings', component: SettingsComponent }    ]
   },

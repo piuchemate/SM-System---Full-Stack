@@ -86,49 +86,6 @@
       ]
     },
     {
-      "id": 6,
-      "studentDetails": [
-        {
-          "fName": "Sonu",
-          "mName": "Govind",
-          "lName": "Chemate",
-          "email": "swarachemate@gmail.com",
-          "motherTongue": "Hindi",
-          "disability": "No",
-          "admissionClass": "5th",
-          "documentsSubmitted": "Aadhar Card",
-          "gender": "female",
-          "dob": "2026-04-13",
-          "birthPlace": "Sangmner",
-          "religion": "muslim",
-          "category": "Shia",
-          "lastSchool": "3/02/2025",
-          "admissionDate": "2026-04-27",
-          "address": "Shriram colony Datta Nagar Shevgoan",
-          "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
-          "caste": "vanjari"
-        }
-      ],
-      "fatherDetails": [
-        {
-          "fName": "Govind",
-          "mName": "Babasaheb",
-          "lName": "Chemate",
-          "email": "govindchemate@gmail.com",
-          "phone": "09823208383"
-        }
-      ],
-      "motherDetails": [
-        {
-          "fName": "Lata",
-          "mName": "Govind",
-          "lName": "Chemate",
-          "email": "latachemate@gmail.com",
-          "phone": "09823208383"
-        }
-      ]
-    },
-    {
       "id": 7,
       "studentDetails": [
         {
@@ -465,10 +422,10 @@
       ]
     }
   ],
-  "teachers": [
+  "staff": [
     {
       "id": 101,
-      "teacherDetails": [
+      "staffDetails": [
         {
           "fName": "Jane",
           "mName": "Anne",
@@ -489,7 +446,9 @@
           "address": "123 Academic Way, Education City",
           "phone": 5550198,
           "documentsSubmitted": "Degree, Teaching Certificate",
-          "passportPhoto": "base64_encoded_string_or_url_here"
+          "passportPhoto": "base64_encoded_string_or_url_here",
+          "department": "management",
+          "position": "Principal"
         }
       ],
       "emergencyDetails": [
@@ -499,6 +458,41 @@
           "lName": "Doe",
           "email": "john.emergency@provider.com",
           "phone": 5550911
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "staffDetails": [
+        {
+          "department": "management",
+          "position": "Principal",
+          "fName": "Sushant ",
+          "mName": "S",
+          "lName": "Nagare",
+          "gender": "male",
+          "email": "abc@gmail.com",
+          "dob": "2001-07-02T18:30:00.000Z",
+          "birthPlace": "Nagar",
+          "religion": "hindu",
+          "category": "",
+          "caste": "Vanjri",
+          "motherTongue": "English",
+          "disability": "No",
+          "pastexperience": "NA",
+          "joiningClass": "3rd",
+          "address": "WEC",
+          "documentsSubmitted": "Aadhar Card",
+          "joiningDate": "2001-07-02T18:30:00.000Z"
+        }
+      ],
+      "emergencyDetails": [
+        {
+          "fName": "Lata",
+          "mName": "ghj",
+          "lName": "Chemate",
+          "email": "piuchemate@gmail.com",
+          "phone": "09823208383"
         }
       ]
     }

@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudManagementComponent } from './stud-management/stud-management.component';
-import { TeacherManagementComponent } from './teach-management/teach-management.component';
+import { StaffManagementComponent } from './staff-management/staff-management.component';
+// import { TeacherManagementComponent } from './staff-management/staff-management.component';
 import { ClassManagementComponent } from './class-management/class-management.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -34,7 +35,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     AppComponent,
     NavBarComponent,
     StudManagementComponent,
-    TeacherManagementComponent,
+    StaffManagementComponent,
     ClassManagementComponent,
     // AttendanceComponent,
     ReportsComponent,

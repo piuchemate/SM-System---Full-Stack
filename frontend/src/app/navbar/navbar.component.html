@@ -1,36 +1,71 @@
-<!-- ...existing code... -->
-<div class="d-flex" id="wrapper"> 
-  <div class="text-white p-3 vh-100 sidebar" style="width: 250px; position: fixed;">
-    <h4 class="text-center mb-4">Dashboard</h4>
+<nav>
+  <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="floating-toggle " (click)="toggleSidebar()" aria-label="Toggle sidebar" title="Toggle sidebar">
+        <i class="fas fa-bars fa-lg me-2 "></i>
+      </button>
+      <a class="navbar-brand p-3" href="#">My School</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="wrapper">
+  <div class="text-white  sidebar app-container" [class.collapsed]="isCollapsed">
     <ul class="nav flex-column">
+      
       <li class="nav-item">
-        <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white fas fa-user">Dashboard</a>
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-tachometer-alt me-2"></i><span class="link-text">Dashboard</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/studentmanagement" routerLinkActive="active" class="nav-link text-white">
+          <i class="fas fa-user-graduate me-2 pb-2"></i>
+          <span class="link-text">Student Management</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item"><a routerLink="/teachermanagement" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-chalkboard-teacher me-2"></i><span class="link-text">Teacher Management</span></a>
+      </li> -->
+      <li class="nav-item"><a routerLink="/staffmanagement" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-users me-2"></i><span class="link-text">Staff Management</span></a>
       </li>
       <li class="nav-item">
-        <a routerLink="/studentmanagement" routerLinkActive="active" class="nav-link text-white">Student Management</a>
+        <a routerLink="/classmanagement" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-school me-2"></i><span class="link-text">Class Management</span></a>
       </li>
       <li class="nav-item">
-        <a routerLink="/teachermanagement" routerLinkActive="active" class="nav-link text-white">Teacher Management</a>
+        <a routerLink="/attendance" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-calendar-check me-2"></i><span class="link-text">Attendance</span></a>
       </li>
       <li class="nav-item">
-        <a routerLink="/classmanagement" routerLinkActive="active" class="nav-link text-white">Class Management</a>
-      </li>
-      <li class="nav-item"> 
-        <a routerLink="/attendance" routerLinkActive="active" class="nav-link text-white">Attendance</a> 
+        <a routerLink="/reports" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-chart-bar me-2"></i><span class="link-text">Reports</span></a>
       </li>
       <li class="nav-item">
-        <a routerLink="/reports" routerLinkActive="active" class="nav-link text-white">Reports</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/settings" routerLinkActive="active" class="nav-link text-white">Settings</a>
+        <a routerLink="/settings" routerLinkActive="active" class="nav-link text-white"><i
+            class="fas fa-cog me-2"></i><span class="link-text">Settings</span></a>
       </li>
     </ul>
-  </div>  
+  </div>
 
   <!-- Page Content -->
-  <div class="flex-grow-1" style="margin-left: 250px; padding: 20px;">
+  <div class="flex-grow-1 content" [class.collapsed]="isCollapsed">
     <router-outlet></router-outlet>
+    <div class="sidebar-backdrop" *ngIf="showBackdrop" (click)="closeSidebar()"></div>
   </div>
 </div>
-
-<!-- end layout -->
+<!-- <router-outlet></router-outlet> -->

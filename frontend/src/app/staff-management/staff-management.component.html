@@ -7,14 +7,14 @@
         <!-- Add button shown when table is visible -->
         <div *ngIf="!showForm" class="col-md-3 offset-md-8 text-end">
             <button class="add-btn btn btn-primary" (click)="openAddForm()">
-                <i class="fas fa-user-plus me-2"></i>Add Teacher
+                <i class="fas fa-user-plus me-2"></i>Add Staff
             </button>
         </div>
 
         <!-- Save / Clear shown when form is visible (same line, right aligned) -->
         <div *ngIf="showForm" class="col-12 d-flex justify-content-end gap-2">
             <button class="btn btn-success" data-bs-target="#exampleModa3" title="saveForm"
-                (click)="saveForm(teacherForm)">
+                (click)="saveForm(staffForm)">
                 <i class="fas fa-save me-2"></i>Save Form
             </button>
             <!-- Modal -->
@@ -27,7 +27,7 @@
                             <button type="button" class="btn btn-secondary btn-sm me-2"
                                 data-bs-dismiss="modal">No</button>
                             <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"
-                                (click)="saveForm(teacherForm)">Yes</button>
+                                (click)="saveForm(staffForm)">Yes</button>
                         </div>
                     </div>
                 </div>
@@ -147,10 +147,10 @@
     </div>
 
     <!-- Form Section -->
-    <div *ngIf="showForm" class="form-section" id="teacher-form">
-        <form action="" method="post" #teacherForm="ngForm">
+    <div *ngIf="showForm" class="form-section" id="staff-form">
+        <form action="" method="post" #staffForm="ngForm">
             <div class="formInfo container row">
-                <h3>Teacher Entry Form</h3>
+                <h3>Staff Entry Form</h3>
 
 
                 <!-- Father Information Section -->
@@ -160,110 +160,51 @@
                             <strong class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                 aria-controls="panelsStayOpen-collapseOne">
-                                Emergency Information
+                                Staff Information
                             </strong>
                         </h2>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="emergencyfname  col-md-4">
+
+                                    <div class="department  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput type="text" id="emergencyfname" name="fEmergencyName"
-                                                required [(ngModel)]="teachEnroll.emergencyDetails[0].fName"
-                                                #fEmergencyName="ngModel"
-                                                [class.is-invalid]="fEmergencyName.invalid && (fEmergencyName.touched)">
-                                            <mat-error 
-                                                *ngIf="fEmergencyName.invalid && (fEmergencyName.touched )">
+                                            <mat-label>Department</mat-label>
+                                            <mat-select name="department"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].department"
+                                                (selectionChange)="onDepartmentChange($event.value)"
+                                                #department="ngModel" required>
+                                                <mat-option *ngFor="let dept of departments"
+                                                    [value]="dept.value">{{dept.label}}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="department.invalid && department.touched">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
 
-                                    <div class="emergencymidname  col-md-4">
+                                    <div class="position  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Middle Name</mat-label>
-                                            <input matInput type="text" id="emergencymidname" name="mEmergencyName"
-                                                required [(ngModel)]="teachEnroll.emergencyDetails[0].mName"
-                                                #mEmergencyName="ngModel"
-                                                [class.is-invalid]="mEmergencyName.invalid && (mEmergencyName.touched)">
-                                            <mat-error 
-                                                *ngIf="mEmergencyName.invalid && mEmergencyName.touched">
+                                            <mat-label>Position</mat-label>
+                                            <mat-select name="position" required
+                                                [(ngModel)]="staffEnroll.staffDetails[0].position" #position="ngModel">
+                                                <mat-option *ngFor="let pos of designations" [value]="pos">{{ pos
+                                                    }}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="position.invalid && position.touched">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
-                                    <div class="emergencylname  col-md-4">
-                                        <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Last Name</mat-label>
-                                            <input matInput type="text" id="emergencylname" placeholder="Your last"
-                                                required [(ngModel)]="teachEnroll.emergencyDetails[0].lName"
-                                                name="lEmergencyName" #lEmergencyName="ngModel"
-                                                [class.is-invalid]="lEmergencyName.invalid && (lEmergencyName.touched)">
-                                            <mat-error 
-                                                *ngIf="lEmergencyName.invalid && lEmergencyName.touched">
-                                                *Field is Required
-                                            </mat-error>
-                                        </mat-form-field>
-
-
-                                    </div>
-                                    <div class="w-100"></div>
-                                    <div class="emergencyemailid  col-md-4">
-                                        <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Email ID</mat-label>
-                                            <input matInput type="email" id="emergencyemailid" name="emailidofFather"
-                                                placeholder="Your email id.." required
-                                                [(ngModel)]="teachEnroll.emergencyDetails[0].email"
-                                                #emailidofFather="ngModel"
-                                                [class.is-invalid]="emailidofFather.invalid && (emailidofFather.touched)">
-                                            <mat-error 
-                                                *ngIf="emailidofFather.invalid && emailidofFather.touched">
-                                                *Field is Required
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="emergencyphoneNo  col-md-4">
-                                        <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Phone No</mat-label>
-                                            <input matInput type="tel" id="emergencyphoneNo" name="phonenoofFather"
-                                                placeholder="Your phone no.." required
-                                                [(ngModel)]="teachEnroll.emergencyDetails[0].phone"
-                                                #phonenoofFather="ngModel"
-                                                [class.is-invalid]="phonenoofFather.invalid && (phonenoofFather.touched)">
-                                            <mat-error 
-                                                *ngIf="phonenoofFather.invalid && phonenoofFather.touched">
-                                                *Field is Required
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- teacher Information -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <strong class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                                aria-controls="panelsStayOpen-collapseThree">
-                                Teacher Information
-                            </strong>
-                        </h2>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <div class="row">
+                                    <hr>
                                     <div class="fname  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>First Name</mat-label>
-                                            <input matInput type="text" id="fname" name="fNameofteacher"
+                                            <input matInput type="text" id="fname" name="fNameofstaff"
                                                 placeholder="Your name.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].fName"
-                                                #fNameofteacher="ngModel"
-                                                [class.is-invalid]="fNameofteacher.invalid && (fNameofteacher.touched)">
-                                            <mat-error 
-                                                *ngIf="fNameofteacher.invalid && fNameofteacher.touched ">
+                                                [(ngModel)]="staffEnroll.staffDetails[0].fName" #fNameofstaff="ngModel"
+                                                [class.is-invalid]="fNameofstaff.invalid && (fNameofstaff.touched)">
+                                            <mat-error *ngIf="fNameofstaff.invalid && fNameofstaff.touched ">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
@@ -271,13 +212,11 @@
                                     <div class="midname  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Middle Name</mat-label>
-                                            <input matInput type="text" id="midname" name="mNameofteacher"
+                                            <input matInput type="text" id="midname" name="mNameofstaff"
                                                 placeholder="Your middle name.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].mName"
-                                                #mNameofteacher="ngModel"
-                                                [class.is-invalid]="mNameofteacher.invalid && (mNameofteacher.touched)">
-                                            <mat-error 
-                                                *ngIf="mNameofteacher.invalid && mNameofteacher.touched">
+                                                [(ngModel)]="staffEnroll.staffDetails[0].mName" #mNameofstaff="ngModel"
+                                                [class.is-invalid]="mNameofstaff.invalid && (mNameofstaff.touched)">
+                                            <mat-error *ngIf="mNameofstaff.invalid && mNameofstaff.touched">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
@@ -285,13 +224,12 @@
                                     <div class="lname  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Last Name</mat-label>
-                                            <input matInput type="text" id="lname" name="lastNameofteacher"
+                                            <input matInput type="text" id="lname" name="lastNameofstaff"
                                                 placeholder="Your last" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].lName"
-                                                #lastNameofteacher="ngModel"
-                                                [class.is-invalid]="lastNameofteacher.invalid && (lastNameofteacher.touched)">
-                                            <mat-error
-                                                *ngIf="lastNameofteacher.invalid && lastNameofteacher.touched">
+                                                [(ngModel)]="staffEnroll.staffDetails[0].lName"
+                                                #lastNameofstaff="ngModel"
+                                                [class.is-invalid]="lastNameofstaff.invalid && (lastNameofstaff.touched)">
+                                            <mat-error *ngIf="lastNameofstaff.invalid && lastNameofstaff.touched">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
@@ -300,14 +238,14 @@
                                         <label class="d-block text-muted small">Gender *</label>
                                         <div class="mt-2">
                                             <mat-radio-group name="gender"
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].gender" required
+                                                [(ngModel)]="staffEnroll.staffDetails[0].gender" required
                                                 #gender="ngModel">
                                                 <mat-radio-button value="male" class="me-3">Male</mat-radio-button>
                                                 <mat-radio-button value="female">Female</mat-radio-button>
 
                                             </mat-radio-group>
                                         </div>
-                                        <small  *ngIf="gender.invalid && gender.touched">
+                                        <small *ngIf="gender.invalid && gender.touched">
                                             *Field is Required
                                         </small>
                                     </div>
@@ -317,7 +255,7 @@
                                             <mat-label>Email ID</mat-label>
                                             <input matInput type="email" id="emailId" name="emailidofstudent"
                                                 placeholder="Your email id.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].email"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].email"
                                                 #emailidofstudent="ngModel">
                                             <mat-error *ngIf="emailidofstudent.invalid && emailidofstudent.touched">
                                                 *Field is Required
@@ -329,7 +267,7 @@
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Date of Birth</mat-label>
                                             <input matInput [matDatepicker]="picker" id="dob" name="dob" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].dob" #dob="ngModel">
+                                                [(ngModel)]="staffEnroll.staffDetails[0].dob" #dob="ngModel">
                                             <mat-hint>MM/DD/YYYY</mat-hint>
                                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
@@ -344,7 +282,7 @@
                                             <mat-label>Birth Place</mat-label>
                                             <input matInput type="text" id="birthPlace" name="birthPlace"
                                                 placeholder="Your birth place.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].birthPlace"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].birthPlace"
                                                 #birthPlace="ngModel">
                                             <mat-error *ngIf="birthPlace.invalid && birthPlace.touched">
                                                 *Field is Required
@@ -356,7 +294,7 @@
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Religion</mat-label>
                                             <mat-select name="religion"
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].religion"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].religion"
                                                 (selectionChange)="onReligionChange($event.value)" #religion="ngModel"
                                                 required>
                                                 <mat-option *ngFor="let rel of religions"
@@ -367,29 +305,12 @@
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
-
-                                    <div class="category  col-md-4">
-                                        <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Category</mat-label>
-                                            <mat-select name="category" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].category"
-                                                #category="ngModel">
-                                                <mat-option *ngFor="let caste of castes" [value]="caste">{{ caste
-                                                    }}</mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="category.invalid && category.touched">
-                                                *Field is Required
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-
                                     <div class="caste  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Caste</mat-label>
                                             <input matInput type="text" id="caste" name="studentCaste"
                                                 placeholder="Your caste.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].caste"
-                                                #studentCaste="ngModel">
+                                                [(ngModel)]="staffEnroll.staffDetails[0].caste" #studentCaste="ngModel">
                                             <mat-error *ngIf="studentCaste.invalid && studentCaste.touched">
                                                 *Field is Required
                                             </mat-error>
@@ -400,7 +321,7 @@
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Mother Tongue</mat-label>
                                             <mat-select name="studentMotherTongue" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].motherTongue"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].motherTongue"
                                                 #studentMotherTongue="ngModel">
                                                 <mat-option *ngFor="let language of languages" [value]="language">{{
                                                     language }}</mat-option>
@@ -417,7 +338,7 @@
                                             <mat-label>Physical Disability</mat-label>
                                             <mat-select name="physicalDisability" #physicalDisability="ngModel"
                                                 (selectionChange)="onDisabilityChange($event.value)" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].disability">
+                                                [(ngModel)]="staffEnroll.staffDetails[0].disability">
                                                 <mat-option value="Yes">Yes</mat-option>
                                                 <mat-option value="No">No</mat-option>
                                             </mat-select>
@@ -427,14 +348,14 @@
                                         </mat-form-field>
                                     </div>
 
-                                    <div class="lastschool  col-md-4">
+                                    <div class="pastexperience  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Last School Attended</mat-label>
-                                            <input matInput type="text" id="lastSchool" name="lastSchool"
-                                                placeholder="Your last school.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].lastSchool"
-                                                #lastSchool="ngModel">
-                                            <mat-error *ngIf="lastSchool.invalid && lastSchool.touched">
+                                            <mat-label>Past Experience</mat-label>
+                                            <input matInput type="text" id="pastExperience" name="pastExperience"
+                                                placeholder="Your past experience.." required
+                                                [(ngModel)]="staffEnroll.staffDetails[0].pastexperience"
+                                                #pastExperience="ngModel">
+                                            <mat-error *ngIf="pastExperience.invalid && pastExperience.touched">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
@@ -444,7 +365,7 @@
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Standard for Admission</mat-label>
                                             <mat-select name="standardSelect" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].joiningClass"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].joiningClass"
                                                 #standardSelect="ngModel">
                                                 <mat-option *ngFor="let class of classes" [value]="class">{{ class
                                                     }}</mat-option>
@@ -454,24 +375,25 @@
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
-
                                     <div class="dob  col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
-                                            <mat-label>Date of Admission</mat-label>
-                                            <input matInput type="date" name="dobofadmission" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].joiningDate"
-                                                #dobofadmission="ngModel">
-                                            <mat-error *ngIf="dobofadmission.invalid && dobofadmission.touched">
+                                            <mat-label>Joining Date</mat-label>
+                                            <input matInput [matDatepicker]="picker" id="joiningDate" name="joiningDate"
+                                                required [(ngModel)]="staffEnroll.staffDetails[0].joiningDate"
+                                                #joiningDate="ngModel">
+                                            <mat-hint>MM/DD/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                            <mat-error *ngIf="joiningDate.invalid && joiningDate.touched">
                                                 *Field is Required
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
-
                                     <div class="adress col-12 col-md-4">
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Address</mat-label>
                                             <textarea matInput name="address" placeholder="Your address.." required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].address"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].address"
                                                 #address="ngModel"></textarea>
                                             <mat-error *ngIf="address.invalid && address.touched">
                                                 *Field is Required
@@ -483,7 +405,7 @@
                                         <mat-form-field appearance="fill" class="w-100">
                                             <mat-label>Documents</mat-label>
                                             <mat-select name="documentsSelect" required
-                                                [(ngModel)]="teachEnroll.teacherDetails[0].documentsSubmitted"
+                                                [(ngModel)]="staffEnroll.staffDetails[0].documentsSubmitted"
                                                 #documentsSelect="ngModel">
                                                 <mat-option *ngFor="let doc of documents" [value]="doc">{{ doc
                                                     }}</mat-option>
@@ -502,11 +424,94 @@
                                         <label class="text-muted small d-block">Passport Size Photo *</label>
                                         <input type="file" id="passportPhoto" name="passportPhoto"
                                             class="form-control form-control-sm mt-1"
-                                            [(ngModel)]="teachEnroll.teacherDetails[0].passportPhoto"
+                                            [(ngModel)]="staffEnroll.staffDetails[0].passportPhoto"
                                             #passportPhoto="ngModel">
                                         <!-- <small  *ngIf="passportPhoto.invalid && passportPhoto.touched">
                       *Field is Required
                     </small> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- staff Information -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <strong class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                Emergency Information
+                            </strong>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="emergencyfname  col-md-4">
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <mat-label>First Name</mat-label>
+                                            <input matInput type="text" id="emergencyfname" name="fEmergencyName"
+                                                required [(ngModel)]="staffEnroll.emergencyDetails[0].fName"
+                                                #fEmergencyName="ngModel"
+                                                [class.is-invalid]="fEmergencyName.invalid && (fEmergencyName.touched)">
+                                            <mat-error *ngIf="fEmergencyName.invalid && (fEmergencyName.touched )">
+                                                *Field is Required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="emergencymidname  col-md-4">
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <mat-label>Middle Name</mat-label>
+                                            <input matInput type="text" id="emergencymidname" name="mEmergencyName"
+                                                required [(ngModel)]="staffEnroll.emergencyDetails[0].mName"
+                                                #mEmergencyName="ngModel"
+                                                [class.is-invalid]="mEmergencyName.invalid && (mEmergencyName.touched)">
+                                            <mat-error *ngIf="mEmergencyName.invalid && mEmergencyName.touched">
+                                                *Field is Required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="emergencylname  col-md-4">
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <mat-label>Last Name</mat-label>
+                                            <input matInput type="text" id="emergencylname" placeholder="Your last"
+                                                required [(ngModel)]="staffEnroll.emergencyDetails[0].lName"
+                                                name="lEmergencyName" #lEmergencyName="ngModel"
+                                                [class.is-invalid]="lEmergencyName.invalid && (lEmergencyName.touched)">
+                                            <mat-error *ngIf="lEmergencyName.invalid && lEmergencyName.touched">
+                                                *Field is Required
+                                            </mat-error>
+                                        </mat-form-field>
+
+
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <div class="emergencyemailid  col-md-4">
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <mat-label>Email ID</mat-label>
+                                            <input matInput type="email" id="emergencyemailid" name="emailidofFather"
+                                                placeholder="Your email id.." required
+                                                [(ngModel)]="staffEnroll.emergencyDetails[0].email"
+                                                #emailidofFather="ngModel"
+                                                [class.is-invalid]="emailidofFather.invalid && (emailidofFather.touched)">
+                                            <mat-error *ngIf="emailidofFather.invalid && emailidofFather.touched">
+                                                *Field is Required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="emergencyphoneNo  col-md-4">
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <mat-label>Phone No</mat-label>
+                                            <input matInput type="tel" id="emergencyphoneNo" name="phonenoofFather"
+                                                placeholder="Your phone no.." required
+                                                [(ngModel)]="staffEnroll.emergencyDetails[0].phone"
+                                                #phonenoofFather="ngModel"
+                                                [class.is-invalid]="phonenoofFather.invalid && (phonenoofFather.touched)">
+                                            <mat-error *ngIf="phonenoofFather.invalid && phonenoofFather.touched">
+                                                *Field is Required
+                                            </mat-error>
+                                        </mat-form-field>
                                     </div>
                                 </div>
                             </div>

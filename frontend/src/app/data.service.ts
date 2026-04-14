@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Entry } from 'src/assets/Models/entry';
 import { StudEnroll } from 'src/assets/Models/stud-enroll';
-import { TeachEnroll } from 'src/assets/Models/teach-enroll';
-import { StudFormData } from 'src/assets/Models/StudFormData';
-
+import { StaffEnroll } from 'src/assets/Models/staff-enroll';
+import { FormsData } from 'src/assets/Models/FormsData';
+import { CardTileComponent } from './card-tile/card-tile.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +17,11 @@ export class DataService {
   constructor(private http: HttpClient) {
   }
 
+  //#region  General Common
+  getFormInputData(): Observable<FormsData> {
+    return this.http.get<FormsData>('http://localhost:3001/inputformData');
+  }
+  //#endregion
   //#region Student APIs
   postStudentData(data: any): Observable<StudEnroll> {
     return this.http.post<StudEnroll>('http://localhost:3000/students', data);
@@ -32,35 +37,32 @@ export class DataService {
     return this.http.put(`${'http://localhost:3000/students'}/${id}`, data);
   }
 
-  getStudentsFormData(): Observable<StudFormData> {
-    return this.http.get<StudFormData>('http://localhost:3001/formData');
-  }
+  
   deleteStudentData(id: number): Observable<any> {
     return this.http.delete(`${'http://localhost:3000/students'}/${id}`);
   }
   //#endregion
 
-  //#region Teacher APIs
+  //#region Staff APIs
 
-  postTeacherData(data: any): Observable<TeachEnroll> {
-    return this.http.post<TeachEnroll>('http://localhost:3000/teachers', data);
+  postStaffData(data: any): Observable<StaffEnroll> {
+    return this.http.post<StaffEnroll>('http://localhost:3000/staff', data);
   }
-  getTeachers(): Observable<TeachEnroll> {
-    return this.http.get<TeachEnroll>('http://localhost:3000/teachers');
-  }
-
-  getTeachersbyID(id: number): Observable<TeachEnroll> {
-    return this.http.get<TeachEnroll>(`${'http://localhost:3000/teachers'}/${id}`);
-  }
-  updateTeacherData(id: number, data: any): Observable<any> {
-    return this.http.put(`${'http://localhost:3000/teachers'}/${id}`, data);
+  getStaffs(): Observable<StaffEnroll > {
+    return this.http.get<StaffEnroll >('http://localhost:3000/staff');
   }
 
-  getTeachersFormData(): Observable<StudFormData> {
-    return this.http.get<StudFormData>('http://localhost:3001/formData');
+  getStaffsbyID(id: number): Observable<StaffEnroll> {
+    return this.http.get<StaffEnroll>(`${'http://localhost:3000/staff'}/${id}`);
   }
-  deleteTeacherData(id: number): Observable<any> {
-    return this.http.delete(`${'http://localhost:3000/teachers'}/${id}`);
+  updateStaffData(id: number, data: any): Observable<any> {
+    return this.http.put(`${'http://localhost:3000/staff'}/${id}`, data);
+  }
+
+  
+  deleteStaffData(id: number): Observable<any> {
+    return this.http.delete(`${'http://localhost:3000/staff'}/${id}`);
   }
   //#endregion
+
 }

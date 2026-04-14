@@ -1,80 +1,131 @@
 {
-    "FormData": {
-        "religions": [
-            {
-                "value": "hindu",
-                "label": "Hindu",
-                "castes": [
-                    "Brahmin",
-                    "Kshatriya",
-                    "Vaishya",
-                    "Shudra"
-                ]
-            },
-            {
-                "value": "muslim",
-                "label": "Muslim",
-                "castes": [
-                    "Sunni",
-                    "Shia"
-                ]
-            },
-            {
-                "value": "christian",
-                "label": "Christian",
-                "castes": [
-                    "Catholic",
-                    "Protestant",
-                    "Orthodox"
-                ]
-            },
-            {
-                "value": "sikh",
-                "label": "Sikh",
-                "castes": [
-                    "Jat",
-                    "Khatri",
-                    "Arora"
-                ]
-            },
-            {
-                "value": "other",
-                "label": "Other",
-                "castes": []
-            }
-        ],
-        "languages": [
-            "English",
-            "Hindi",
-            "Spanish",
-            "French",
-            "German",
-            "Chinese",
-            "Japanese",
-            "Russian",
-            "Arabic",
-            "Portuguese"
-        ],
-        "classes": [
-            "1st",
-            "2nd",
-            "3rd",
-            "4th",
-            "5th",
-            "6th",
-            "7th",
-            "8th",
-            "9th",
-            "10th",
-            "11th",
-            "12th"
-        ],
-        "documents": [
-            "Birth Certificate",
-            "Aadhar Card",
-            "Previous School Report Card",
-            "Passport Size Photograph",
-            "Transfer Certificate"
-        ]
+    "InputFormData": {
+        "FormData": {
+            "religions": [
+                {
+                    "value": "hindu",
+                    "label": "Hindu",
+                    "castes": [
+                        "Brahmin",
+                        "Kshatriya",
+                        "Vaishya",
+                        "Shudra"
+                    ]
+                },
+                {
+                    "value": "muslim",
+                    "label": "Muslim",
+                    "castes": [
+                        "Sunni",
+                        "Shia"
+                    ]
+                },
+                {
+                    "value": "christian",
+                    "label": "Christian",
+                    "castes": [
+                        "Catholic",
+                        "Protestant",
+                        "Orthodox"
+                    ]
+                },
+                {
+                    "value": "sikh",
+                    "label": "Sikh",
+                    "castes": [
+                        "Jat",
+                        "Khatri",
+                        "Arora"
+                    ]
+                },
+                {
+                    "value": "other",
+                    "label": "Other",
+                    "castes": []
+                }
+            ],
+            "languages": [
+                "English",
+                "Hindi",
+                "Spanish",
+                "French",
+                "German",
+                "Chinese",
+                "Japanese",
+                "Russian",
+                "Arabic",
+                "Portuguese"
+            ],
+            "classes": [
+                "1st",
+                "2nd",
+                "3rd",
+                "4th",
+                "5th",
+                "6th",
+                "7th",
+                "8th",
+                "9th",
+                "10th",
+                "11th",
+                "12th"
+            ],
+            "documents": [
+                "Birth Certificate",
+                "Aadhar Card",
+                "Previous School Report Card",
+                "Passport Size Photograph",
+                "Transfer Certificate"
+            ]
+        },
+        "StaffFormData": {
+            "departments": [
+                {
+                    "value": "management",
+                    "label": "Management",
+                    "positions": [
+                        "Principal",
+                        "Vice Principal",
+                        "School Administrator"
+                    ]
+                },
+                {
+                    "value": "teaching",
+                    "label": "Teaching",
+                    "positions": [
+                        "Teacher",
+                        "Senior Teacher",
+                        "Librarian",
+                        "Assistant Teacher"
+                    ]
+                },
+                {
+                    "value": "support-staff",
+                    "label": "Support Staff",
+                    "positions": [
+                        "Janitor",
+                        "Security Guard",
+                        "Cook",
+                        "Driver",
+                        "Housekeeping",
+                        "Gardener",
+                        "Peon"
+                    ]
+                },
+                {
+                    "value": "maintenance",
+                    "label": "Maintenance",
+                    "positions": [
+                        "Electrician",
+                        "Plumber"
+                    ]
+                },
+                {
+                    "value": "counseling",
+                    "label": "Counseling",
+                    "positions": []
+                }
+            ]
+        }
     }
 }

@@ -6,9 +6,9 @@ import { DataService } from '../data.service';
 import { FormBuilder, NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Entry, Entries } from 'src/assets/Models/entry';
-import {  EmergencyDetail,  } from 'src/assets/Models/teach-enroll';
-import { TeachEnroll, TeacherDetail } from 'src/assets/Models/teach-enroll';
-import { StudFormData } from 'src/assets/Models/StudFormData';
+import { EmergencyDetail, } from 'src/assets/Models/staff-enroll';
+import { StaffEnroll, StaffDetails } from 'src/assets/Models/staff-enroll';
+import { FormsData } from 'src/assets/Models/FormsData';
 import { MatRadioModule } from '@angular/material/radio'; // Import this
 import { MatSelectModule } from '@angular/material/select'; // You'll also need this for mat-select
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -22,15 +22,15 @@ export interface UserData {
 }
 
 @Component({
-  selector: 'app-teach-management',
-  templateUrl: './teach-management.component.html',
-  styleUrls: ['./teach-management.component.css']
+  selector: 'app-staff-management',
+  templateUrl: './staff-management.component.html',
+  styleUrls: ['./staff-management.component.css']
 })
 
-export class TeacherManagementComponent {
+export class StaffManagementComponent {
 
-  role = 'Teacher Management';
-  description = 'Access and manage your teacher information here.';
+  role = 'Staff Management';
+  description = 'Access and manage your staff information here.';
 
 
   displayedColumns: string[] = ['id', 'firstName', 'dob', 'class', 'actions'];
@@ -38,8 +38,8 @@ export class TeacherManagementComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild('teacherForm') teacherForm!: NgForm;
-  teachEnroll!: TeachEnroll;
+  @ViewChild('staffForm') staffForm!: NgForm;
+  staffEnroll!: StaffEnroll;
   studId!: number;
 
   // track which row's action popover is open (id)
@@ -51,21 +51,23 @@ export class TeacherManagementComponent {
   castes: any;
   classes: any;
   documents: any;
+  departments: any;
+  designations: any;
   showDisabilityDetails = false;
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.userForm = this.fb.group({ fName: [''], mName: [''], lname: [''], emailid: [''], phoneno: [''], name: [''], })
-    this.dataService.postTeacherData(this.userForm.value);
+    this.dataService.postStaffData(this.userForm.value);
   }
   get f() {
     console.log(this.userForm);
     return this.userForm.controls;
   }
   ngOnInit() {
-    this.loadTeachers();
+    this.loadStaffs();
   }
 
-  loadTeachers() {
-    this.dataService.getTeachers().subscribe((res: TeachEnroll) => {
+  loadStaffs() {
+    this.dataService.getStaffs().subscribe((res: StaffEnroll) => {
 
       console.log("API Response:", res); // 👈 check this in console
 
@@ -74,11 +76,11 @@ export class TeacherManagementComponent {
         return;
       }
 
-      const formatted = res.map((item: TeachEnroll) => ({
+      const formatted = res.map((item: StaffEnroll) => ({
         id: item.id,
-        firstName: item.teacherDetails[0].fName + ' ' + item.teacherDetails[0].lName || '',
-        dob: item.teacherDetails[0].dob || '',
-        class: item.teacherDetails[0].joiningClass || ''
+        firstName: item.staffDetails[0].fName + ' ' + item.staffDetails[0].lName || '',
+        dob: item.staffDetails[0].dob || '',
+        class: item.staffDetails[0].joiningClass || ''
       }));
 
       this.dataSource.data = formatted.map((s: any) => new Entries(s));
@@ -86,7 +88,7 @@ export class TeacherManagementComponent {
   }
 
   saveForm(form: any) {
-    
+
 
     if (!form || form.invalid) {
       alert("Please fill all required fields");
@@ -100,13 +102,13 @@ export class TeacherManagementComponent {
     );
     modal.show();
 
-    if (this.teachEnroll.id == null) {
+    if (this.staffEnroll.id == null) {
       console.log("Inserting new entry");
-      this.dataService.postTeacherData(this.teachEnroll).subscribe({
+      this.dataService.postStaffData(this.staffEnroll).subscribe({
         next: (res) => {
           console.log("Saved Successfully", res);
 
-          this.loadTeachers();   // refresh table
+          this.loadStaffs();   // refresh table
           this.showForm = false; // close form
         },
         error: (err) => {
@@ -117,11 +119,10 @@ export class TeacherManagementComponent {
     else {
       console.log("Updating entry");
 
-      this.dataService.updateTeacherData(this.teachEnroll.id, this.teachEnroll).subscribe({
+      this.dataService.updateStaffData(this.staffEnroll.id, this.staffEnroll).subscribe({
         next: (res) => {
           console.log("Saved Successfully", res);
-
-          this.loadTeachers();   // refresh table
+          this.loadStaffs();   // refresh table
           this.showForm = false; // close form
         },
         error: (err) => {
@@ -154,15 +155,15 @@ export class TeacherManagementComponent {
 
     const id = row.id;
 
-    this.dataService.getTeachersbyID(id).subscribe(res => {
+    this.dataService.getStaffsbyID(id).subscribe(res => {
 
       console.log("Edit Data:", res);
       // Open form
       this.showForm = true;
       // Assign full object to form model
-      this.teachEnroll = res;
+      this.staffEnroll = res;
     });
-    this.GetTeachersInputData();
+    this.GetStaffsInputData();
     this.activeRow = null;
   }
 
@@ -175,7 +176,7 @@ export class TeacherManagementComponent {
     this.dataService.deleteStudentData(row.id).subscribe(
       () => {
         console.log('Student deleted successfully!');
-        this.loadTeachers(); // Refresh the student list
+        this.loadStaffs(); // Refresh the student list
       }
     );
   }
@@ -184,32 +185,50 @@ export class TeacherManagementComponent {
     this.showForm = true;
 
     // 1. Reset the validation state
-    if (this.teacherForm) {
-      this.teacherForm.resetForm();
+    if (this.staffForm) {
+      this.staffForm.resetForm();
     }
 
     // 2. Initialize the model to match structure
-    this.teachEnroll = {
+    this.staffEnroll = {
       id: null, // Important for save vs update logic
-      teacherDetails: [new TeacherDetail()],
+      staffDetails: [new StaffDetails()],
       emergencyDetails: [new EmergencyDetail()]
     };
 
     this.castes = [];
+    this.designations = [];
 
     // 4. Call the API
-    this.GetTeachersInputData();
+    this.GetStaffsInputData();
   }
 
-  GetTeachersInputData() {
-    this.dataService.getTeachersFormData().subscribe({
-      next: (res: any) => {
+  // GetStaffsInputData() {
+  //   this.dataService.getFormInputData().subscribe({
+  //     next: (res: FormsData) => {
+  //       console.log("Form Data Received:", res);
+
+  //       this.religions = res?.formData?.religions || [];
+  //       this.departments = res?.staffFormData?.departments || [];
+  //       this.languages = res?.formData?.languages || [];
+  //       this.classes = res?.formData?.classes || [];
+  //       this.documents = res?.formData?.documents || [];
+  //     },
+  //     error: (err) => console.error("API Error:", err)
+  //   });
+  // }
+  GetStaffsInputData() {
+    this.dataService.getFormInputData().subscribe({
+      next: (res: any) => { // Using any temporarily to bypass strict model checks if they mismatch
         console.log("Form Data Received:", res);
 
-        this.religions = res?.religions || [];
-        this.languages = res?.languages || [];
-        this.classes = res?.classes || [];
-        this.documents = res?.documents || [];
+        this.religions = res?.FormData?.religions || [];
+        this.departments = res?.StaffFormData?.departments || [];
+        this.languages = res?.FormData?.languages || [];
+        this.classes = res?.FormData?.classes || [];
+        this.documents = res?.FormData?.documents || [];
+
+        console.log("Religions bound:", this.religions); // Should show array now
       },
       error: (err) => console.error("API Error:", err)
     });
@@ -221,7 +240,15 @@ export class TeacherManagementComponent {
     this.castes = selected ? selected.castes : [];
 
     // Optional: Reset the category selection when religion changes
-    this.teachEnroll.teacherDetails[0].category = '';
+    this.staffEnroll.staffDetails[0].category = '';
+  }
+  onDepartmentChange(value: string) {
+    // We filter from the local 'this.departmentss' array already fetched
+    const selected = this.departments.find((r: any) => r.value === value);
+    this.designations = selected ? selected.positions : [];
+
+    // Optional: Reset the category selection when departments changes
+    this.staffEnroll.staffDetails[0].position = '';
   }
 
   onDisabilityChange(value: string) {
