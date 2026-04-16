@@ -29,7 +29,7 @@ import { DashboardComponent } from './dashboard.component/dashboard.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +62,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {

@@ -40,8 +40,8 @@ export class DashboardComponent {
 
   }
   // Make tiles dynamic so `count` reflects latest values from async loads.
-  get tiles() {
-    return [
+  tiles= [
+   
       {
         icon: 'assets/my-classes',
         title: 'Student Count',
@@ -54,6 +54,6 @@ export class DashboardComponent {
         link: '/staffmanagement',
         count: this.teacherCount
       }
+   
     ];
-  }
 }

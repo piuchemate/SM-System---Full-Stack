@@ -32,7 +32,7 @@ export class StudManagementComponent {
   description = 'Access and manage your student information here.';
 
 
-  displayedColumns: string[] = ['id', 'firstName', 'dob', 'class', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'dob', 'class', 'actions'];
   dataSource = new MatTableDataSource<Entries>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -75,7 +75,7 @@ export class StudManagementComponent {
 
       const formatted = res.map((item: StudEnroll) => ({
         id: item.id,
-        firstName: item.studentDetails[0].fName + ' ' + item.studentDetails[0].lName || '',
+        name: item.studentDetails[0].fName + ' ' + item.studentDetails[0].lName || '',
         dob: item.studentDetails[0].dob || '',
         class: item.studentDetails[0].admissionClass || ''
       }));

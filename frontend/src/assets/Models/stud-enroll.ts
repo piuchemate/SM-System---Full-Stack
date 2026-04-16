@@ -19,6 +19,7 @@ export class StudentDetail {
   phone!: number;
   documentsSubmitted!: string;
   passportPhoto!: string;
+  division!: string;
 }
 export class FatherDetail {
   fName!: string;

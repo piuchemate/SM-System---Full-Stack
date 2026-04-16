@@ -20,7 +20,8 @@
           "documentsSubmitted": "Previous School Report Card",
           "passportPhoto": "C:\\fakepath\\Screenshot_9-4-2026_17590_localhost.jpeg",
           "admissionDate": "2026-04-30",
-          "caste": "w"
+          "caste": "w",
+          "division": "B"
         }
       ],
       "fatherDetails": [
@@ -399,7 +400,8 @@
           "religion": "christian",
           "category": "Protestant",
           "gender": "female",
-          "address": "dcda"
+          "address": "dcda",
+           "division": "A"
         }
       ],
       "fatherDetails": [

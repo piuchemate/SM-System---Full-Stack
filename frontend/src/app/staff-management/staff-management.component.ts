@@ -33,7 +33,7 @@ export class StaffManagementComponent {
   description = 'Access and manage your staff information here.';
 
 
-  displayedColumns: string[] = ['id', 'firstName', 'dob', 'class', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'dob', 'class', 'actions'];
   dataSource = new MatTableDataSource<Entries>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -78,7 +78,7 @@ export class StaffManagementComponent {
 
       const formatted = res.map((item: StaffEnroll) => ({
         id: item.id,
-        firstName: item.staffDetails[0].fName + ' ' + item.staffDetails[0].lName || '',
+        name: item.staffDetails[0].fName + ' ' + item.staffDetails[0].lName || '',
         dob: item.staffDetails[0].dob || '',
         class: item.staffDetails[0].joiningClass || ''
       }));
