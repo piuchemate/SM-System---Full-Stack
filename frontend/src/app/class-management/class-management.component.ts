@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DataService } from '../data.service';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
@@ -10,7 +10,7 @@ import { StaffEnroll } from 'src/assets/Models/staff-enroll';
 import { UserData } from '../staff-management/staff-management.component';
 import { StudEnroll } from 'src/assets/Models/stud-enroll';
 import { SelectionModel } from '@angular/cdk/collections';
-
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-class&subject-management',
@@ -18,8 +18,10 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./class-management.component.css']
 })
 export class ClassManagementComponent {
+  private _liveAnnouncer = inject(LiveAnnouncer);
+
   userForm: import("@angular/forms").FormGroup<{ fName: import("@angular/forms").FormControl<string | null>; mName: import("@angular/forms").FormControl<string | null>; lname: import("@angular/forms").FormControl<string | null>; emailid: import("@angular/forms").FormControl<string | null>; phoneno: import("@angular/forms").FormControl<string | null>; name: import("@angular/forms").FormControl<string | null>; }>;
-  showForm: boolean = false;
+  isEditFormVisible: boolean = false;
   religions: any;
   departments: any;
   languages: any;
@@ -31,12 +33,12 @@ export class ClassManagementComponent {
   role = 'Class and Subject Management';
   description = 'Access and manage your class and subject information here.';
   selection = new SelectionModel<any>(true, []);
-  displayedColumns: string[] = ['select', 'id', 'name', 'class', 'division', 'actions'];
-  dataSource = new MatTableDataSource<Entries>();
+  displayedColumnsMainTable: string[] = ['select', 'id', 'name', 'class', 'division', 'actions'];
+  dataSourceMainTable = new MatTableDataSource<Entries>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('staffForm') staffForm!: NgForm;
   staffEnroll!: StaffEnroll;
+  studEnroll!: StudEnroll;
   studId!: number;
   classList: any[] = [];
   divisionList: any[] = [];
@@ -45,6 +47,13 @@ export class ClassManagementComponent {
   selectedClass: string = '';
   selectedDivision: string = '';
   searchFilter: string = '';
+
+  displayedColumnsEditTable: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSourceEditTable = new MatTableDataSource<Entries>();
+
+  originalStudentData!: StudEnroll; // To store original data for reset if needed
+
+  @ViewChild(MatSort) sort!: MatSort;
 
 
   constructor(private dataService: DataService, private fb: FormBuilder) {
@@ -58,14 +67,35 @@ export class ClassManagementComponent {
 
 
   }
+
+
+  ngAfterViewInit() {
+    this.dataSourceEditTable.sort = this.sort;
+  }
+
+  /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
   loadStudents() {
     this.dataService.getStudents().subscribe((res: any) => {
-      // ... your formatting logic ...
+
+      this.originalStudentData = res;
+
       const formatted = res.map((item: any) => ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: item.studentDetails[0]?.admissionClass, division: item.studentDetails[0]?.division }));
-      this.dataSource.data = formatted.map((s: any) => new Entries(s));
+      this.dataSourceMainTable.data = formatted.map((s: any) => new Entries(s));
 
       // 1. Generate Unique Dropdown Lists
-      this.classList = [...new Set(res
+      this.classList = [...new (res
         .filter((item: StudEnroll) => item.studentDetails[0]?.admissionClass)
         .map((item: StudEnroll) => item.studentDetails[0].admissionClass)
       )];
@@ -73,9 +103,10 @@ export class ClassManagementComponent {
         .filter((item: StudEnroll) => item.studentDetails[0]?.division)
         .map((item: StudEnroll) => item.studentDetails[0].division)
       )];
+      
 
       // 2. Setup Custom Filter Predicate
-      this.dataSource.filterPredicate = (data: any, filter: string) => {
+      this.dataSourceMainTable.filterPredicate = (data: any, filter: string) => {
         const searchTerms = JSON.parse(filter);
 
         // Use the || '' trick to ensure we are always calling toLowerCase on a string
@@ -103,26 +134,26 @@ export class ClassManagementComponent {
     console.log(this.userForm);
     return this.userForm.controls;
   }
-  
+
   applyFilter(event: Event) {
-  // 1. Get the text from the input
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.searchFilter = filterValue; // Update the shared variable
+    // 1. Get the text from the input
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.searchFilter = filterValue; // Update the shared variable
 
-  // 2. Create the combined filter object
-  const combinedFilter = {
-    class: this.selectedClass,
-    division: this.selectedDivision,
-    search: this.searchFilter
-  };
+    // 2. Create the combined filter object
+    const combinedFilter = {
+      class: this.selectedClass,
+      division: this.selectedDivision,
+      search: this.searchFilter
+    };
 
-  // 3. Send as JSON string
-  this.dataSource.filter = JSON.stringify(combinedFilter);
+    // 3. Send as JSON string
+    this.dataSourceMainTable.filter = JSON.stringify(combinedFilter);
 
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
+    if (this.dataSourceMainTable.paginator) {
+      this.dataSourceMainTable.paginator.firstPage();
+    }
   }
-}
 
   applyDropdownFilter(event: Event) {
     const filterValue = {
@@ -130,20 +161,20 @@ export class ClassManagementComponent {
       division: this.selectedDivision,
       search: this.searchFilter
     };
-    
-    this.dataSource.filter = JSON.stringify(filterValue);
 
-    console.log("Applied Filter:", filterValue, "DataSource Filter:", this.dataSource.filter);
+    this.dataSourceMainTable.filter = JSON.stringify(filterValue);
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    console.log("Applied Filter:", filterValue, "DataSource Filter:", this.dataSourceMainTable.filter);
+
+    if (this.dataSourceMainTable.paginator) {
+      this.dataSourceMainTable.paginator.firstPage();
     }
   }
 
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length; // Fixed: access .data
+    const numRows = this.dataSourceMainTable.data.length; // Fixed: access .data
     return numSelected === numRows;
   }
 
@@ -155,7 +186,7 @@ export class ClassManagementComponent {
     }
 
     // Select every row in the current data source
-    this.selection.select(...this.dataSource.data);
+    this.selection.select(...this.dataSourceMainTable.data);
   }
 
   /** The label for the checkbox on the passed row */
@@ -190,7 +221,7 @@ export class ClassManagementComponent {
 
       console.log("Edit Data:", res);
       // Open form
-      this.showForm = true;
+      this.isEditFormVisible = true;
       // Assign full object to form model
       this.staffEnroll = res;
     });
@@ -214,8 +245,20 @@ export class ClassManagementComponent {
     if (event) { event.stopPropagation(); } // prevent document click closures if used
     this.activeRow = this.activeRow === id ? null : id;
   }
-updatedata(){
-    this.showForm = true;
 
+  updatedata() {
+    const selectedIds = this.selection.selected.map((item: any) => item.id);
+
+    console.log("Selected IDs for Update:", selectedIds);
+
+    const formatted = (this.originalStudentData as any).filter((item: StudEnroll) =>
+      selectedIds.includes(item.id)).map((item: any) =>
+        ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: item.studentDetails[0]?.admissionClass, division: item.studentDetails[0]?.division }));
+
+    this.dataSourceEditTable.data = formatted.map((s: any) => new Entries(s));
+    this.isEditFormVisible = true;
+
+  
 }
+
 }

@@ -1,43 +1,124 @@
 <div class="dashboard-container">
     <h4>{{ role }}</h4>
     <p>{{ description }}</p>
-
-    <div *ngIf="!showForm" class="col-md-3 offset-md-8 text-end">
-        <button class="add-btn btn btn-primary" (click)="updatedata()">
-           <i class="fa-solid fa-arrow-rotate-right me-2"></i>Update Student
+    <div *ngIf="!isEditFormVisible" class="col-md-3 offset-md-8 text-end">
+        <button class="add-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            [attr.data-bs-target]="'#editModal'">
+            <i class="fa-solid fa-arrow-rotate-right me-2"></i>Update Student
         </button>
+        <div class="modal fade" [id]="'editModal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            *ngIf="selection.selected.length > 0">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="mb-3"> Please confirm that you want to proceed with editing record ?</div>
+                        <button type="button" class="btn btn-secondary btn-sm me-2" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"
+                            (click)="updatedata()">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" [id]="'editModal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            *ngIf="selection.selected.length == 0">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div> Please select rows you want to update !</div>
+                        <button type="button" class="btn btn-secondary btn-sm me-2" data-bs-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <table>
-    </table>
-    <div class="table-container" *ngIf="!showForm">
-        <div class="">
-        <mat-form-field class="filter-field me-3">
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-            <mat-label>Search</mat-label>
-        </mat-form-field>
+
+    <div class="table-cntainer" *ngIf="isEditFormVisible">
         <mat-form-field appearance="fill" class="me-3">
-            <mat-label>Select Class</mat-label>
-            <mat-select name="physicalDisability" #physicalDisability="ngModel"
-                (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedClass">
-                <mat-option value="">All Classes</mat-option>
+                <mat-label>Select Class</mat-label>
+                <mat-select name="physicalDisability" 
+                    (selectionChange)="applyDropdownFilter($event.value)" required >
+                    <mat-option value="">Update Class</mat-option>
+                    <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+             <mat-form-field appearance="fill">
+                <mat-label>Select Division</mat-label>
+                <mat-select name="physicalDisability" #physicalDisability="ngModel"
+                    (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedDivision">
+                    <mat-option value="">Update Division</mat-option>
+                    <mat-option *ngFor="let division of divisionList" [value]="division">{{ division }}</mat-option>
 
-                <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Select Division</mat-label>
-            <mat-select name="physicalDisability" #physicalDisability="ngModel"
-                (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedDivision">
-                <mat-option value="">All Divisions</mat-option>
-                <mat-option *ngFor="let division of divisionList" [value]="division">{{ division }}</mat-option>
+        <table mat-table [dataSource]="dataSourceEditTable" matSort (matSortChange)="announceSortChange($event)"
+            class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                    No.
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
 
-            </mat-select>
-        </mat-form-field>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                    Name
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                    Class
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.class}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                    Division
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.division}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsEditTable"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsEditTable;"></tr>
+
+
+        </table>
+
+    </div>
+    <div class="table-container" *ngIf="!isEditFormVisible">
+        <div class="">
+            <mat-form-field class="filter-field me-3">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                <mat-label>Search</mat-label>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="me-3">
+                <mat-label>Select Class</mat-label>
+                <mat-select name="physicalDisability" #physicalDisability="ngModel"
+                    (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedClass">
+                    <mat-option value="">All Classes</mat-option>
+                    <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Select Division</mat-label>
+                <mat-select name="physicalDisability" #physicalDisability="ngModel"
+                    (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedDivision">
+                    <mat-option value="">All Divisions</mat-option>
+                    <mat-option *ngFor="let division of divisionList" [value]="division">{{ division }}</mat-option>
+
+                </mat-select>
+            </mat-form-field>
         </div>
 
-        <table mat-table class="fixed-header-table" [dataSource]="dataSource" matSort>
+        <table mat-table class="fixed-header-table" [dataSource]="dataSourceMainTable" matSort>
             <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
                     <mat-checkbox (change)="$event ? toggleAllRows() : null"
@@ -53,29 +134,29 @@
             </ng-container>
             <!-- ID Column -->
             <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Roll No </th>
+                <th mat-header-cell *matHeaderCellDef mat-sortViewTable-header> Roll No </th>
                 <td mat-cell *matCellDef="let row"> {{row.id}} </td>
             </ng-container>
 
             Progress Column
             <ng-container matColumnDef="dob">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+                <th mat-header-cell *matHeaderCellDef mat-sortViewTable-header> DOB </th>
                 <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <th mat-header-cell *matHeaderCellDef mat-sortViewTable-header> Name </th>
                 <td mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
 
             <!-- Fruit Column -->
             <ng-container matColumnDef="class">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Class </th>
+                <th mat-header-cell *matHeaderCellDef mat-sortViewTable-header> Class </th>
                 <td mat-cell *matCellDef="let row"> {{row.class}} </td>
             </ng-container>
             <ng-container matColumnDef="division">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Division </th>
+                <th mat-header-cell *matHeaderCellDef mat-sortViewTable-header> Division </th>
                 <td mat-cell *matCellDef="let row"> {{row.division}} </td>
             </ng-container>
             <!-- Actions Column -->
@@ -127,8 +208,8 @@
                 </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsMainTable; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsMainTable;"></tr>
             <!-- Row shown when there is no matching data. -->
             <tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
