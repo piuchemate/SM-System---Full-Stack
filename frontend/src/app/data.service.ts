@@ -12,6 +12,7 @@ import { CardTileComponent } from './card-tile/card-tile.component';
 })
 export class DataService {
 
+
   private url = '/assets/stud-data.json';
 
   constructor(private http: HttpClient) {
@@ -36,8 +37,9 @@ export class DataService {
   updateStudentData(id: number, data: any): Observable<any> {
     return this.http.put(`${'http://localhost:3000/students'}/${id}`, data);
   }
-
-  
+  updateStudentClassandDivision(selectedIds: any[], updateData: any) {
+    return this.http.put(`${'http://localhost:3000'}/students`, { ids: selectedIds, updateData });
+  }
   deleteStudentData(id: number): Observable<any> {
     return this.http.delete(`${'http://localhost:3000/students'}/${id}`);
   }
@@ -48,8 +50,8 @@ export class DataService {
   postStaffData(data: any): Observable<StaffEnroll> {
     return this.http.post<StaffEnroll>('http://localhost:3000/staff', data);
   }
-  getStaffs(): Observable<StaffEnroll > {
-    return this.http.get<StaffEnroll >('http://localhost:3000/staff');
+  getStaffs(): Observable<StaffEnroll> {
+    return this.http.get<StaffEnroll>('http://localhost:3000/staff');
   }
 
   getStaffsbyID(id: number): Observable<StaffEnroll> {
@@ -59,7 +61,7 @@ export class DataService {
     return this.http.put(`${'http://localhost:3000/staff'}/${id}`, data);
   }
 
-  
+
   deleteStaffData(id: number): Observable<any> {
     return this.http.delete(`${'http://localhost:3000/staff'}/${id}`);
   }

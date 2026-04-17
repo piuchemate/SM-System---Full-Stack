@@ -38,7 +38,6 @@ export class ClassManagementComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('staffForm') staffForm!: NgForm;
   staffEnroll!: StaffEnroll;
-  studEnroll!: StudEnroll;
   studId!: number;
   classList: any[] = [];
   divisionList: any[] = [];
@@ -95,7 +94,7 @@ export class ClassManagementComponent {
       this.dataSourceMainTable.data = formatted.map((s: any) => new Entries(s));
 
       // 1. Generate Unique Dropdown Lists
-      this.classList = [...new (res
+      this.classList = [...new Set(res
         .filter((item: StudEnroll) => item.studentDetails[0]?.admissionClass)
         .map((item: StudEnroll) => item.studentDetails[0].admissionClass)
       )];
@@ -103,7 +102,6 @@ export class ClassManagementComponent {
         .filter((item: StudEnroll) => item.studentDetails[0]?.division)
         .map((item: StudEnroll) => item.studentDetails[0].division)
       )];
-      
 
       // 2. Setup Custom Filter Predicate
       this.dataSourceMainTable.filterPredicate = (data: any, filter: string) => {
@@ -257,8 +255,44 @@ export class ClassManagementComponent {
 
     this.dataSourceEditTable.data = formatted.map((s: any) => new Entries(s));
     this.isEditFormVisible = true;
+  }
 
-  
-}
+  updateClassandDivision() {
+    console.log("Updated Class:", this.selectedClass, "Updated Division:", this.selectedDivision);
 
+    const selectedIds = this.selection.selected.map((item: any) => item.id);
+    if (this.selectedClass || this.selectedDivision) {
+      const updatedStudents = (this.originalStudentData as any).filter((item: StudEnroll) =>
+        selectedIds.includes(item.id)).map((item: any) => {
+          if (this.selectedClass) {
+            item.studentDetails[0].admissionClass = this.selectedClass;
+          }
+          if (this.selectedDivision) {
+            item.studentDetails[0].division = this.selectedDivision;
+          }
+          return item;
+        });
+
+      // Pass updatedStudents to the API (you may need to adjust the endpoint and payload structure)
+
+      console.log("Updated Student Data to be sent to API:", updatedStudents);
+      console.log("Selected IDs for Update:", selectedIds + " Update Data: " + JSON.stringify(updatedStudents));
+
+      selectedIds.forEach((id: number) => {
+        const studentData = updatedStudents.find((student: any) => student.id === id);
+        this.dataService.updateStudentData(id, studentData).subscribe({
+          next: (res) => {
+            console.log("Saved Successfully", res);
+
+            this.loadStudents();   // refresh table
+            this.isEditFormVisible = false; // close form
+          },
+          error: (err) => {
+            console.error("Error:", err);
+          }
+        });
+
+      });
+    }
+  }
 }

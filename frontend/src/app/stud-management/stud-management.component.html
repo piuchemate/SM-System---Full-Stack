@@ -1,3 +1,21 @@
+<!--Main Navigation-->
+<header>
+    <div class="p-5 bg-body-tertiary mb-4">
+        <h1 class="">Student Management</h1>
+        <nav aria-label="breadcrumb" *ngIf="!showForm">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><i class="fa-solid fa-house"></i> Home</li>
+            </ol>
+        </nav>
+        <nav aria-label="breadcrumb" *ngIf="showForm">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><i class="fa-solid fa-house"></i> <a href="/studentmanagement"> Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add or Update Student</li>
+            </ol>
+        </nav>
+    </div>
+</header>
+
 <div class="dashboard-container">
 
   <h4>{{ role }}</h4>
