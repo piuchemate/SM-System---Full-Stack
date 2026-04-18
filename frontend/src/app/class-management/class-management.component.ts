@@ -22,10 +22,10 @@ export class ClassManagementComponent {
 
   userForm: import("@angular/forms").FormGroup<{ fName: import("@angular/forms").FormControl<string | null>; mName: import("@angular/forms").FormControl<string | null>; lname: import("@angular/forms").FormControl<string | null>; emailid: import("@angular/forms").FormControl<string | null>; phoneno: import("@angular/forms").FormControl<string | null>; name: import("@angular/forms").FormControl<string | null>; }>;
   isEditFormVisible: boolean = false;
-  religions: any;
-  departments: any;
+
   languages: any;
   classes: any;
+  divisions: any;
   documents: any;
   // track which row's action popover is open (id)
   activeRow: string | null = null;
@@ -53,6 +53,8 @@ export class ClassManagementComponent {
   originalStudentData!: StudEnroll; // To store original data for reset if needed
 
   @ViewChild(MatSort) sort!: MatSort;
+  classesToUpdate: any;
+  divisionsToUpdate: any;
 
 
   constructor(private dataService: DataService, private fb: FormBuilder) {
@@ -63,22 +65,28 @@ export class ClassManagementComponent {
 
   ngOnInit() {
     this.loadStudents();
-
+    this.getFormInputData();
 
   }
 
 
   ngAfterViewInit() {
-   this.dataSourceMainTable.paginator = this.paginator;
+    this.dataSourceMainTable.paginator = this.paginator;
     this.dataSourceEditTable.sort = this.sort;
   }
+  getFormInputData() {
+    this.dataService.getFormInputData().subscribe({
+      next: (res: any) => { // Using any temporarily to bypass strict model checks if they mismatch
+        console.log("Form Data Received:", res);
 
-  /** Announce the change in sort state for assistive technology. */
+        this.classesToUpdate = res?.FormData?.classes || [];
+        this.divisionsToUpdate = res?.FormData?.divisions || [];
+
+      },
+      error: (err) => console.error("API Error:", err)
+    });
+  }
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -173,24 +181,23 @@ export class ClassManagementComponent {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSourceMainTable.filteredData.length; // Fixed: access .data
-    return numSelected === numRows;
+    const numRows = this.dataSourceMainTable.filteredData.length;
+    // This checks if the number of selected items matches the number of visible items
+    return numSelected > 0 && numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
- 
+
   toggleAllRows() {
     if (this.isAllSelected()) {
+      // If everything is already selected, clear it and STOP
       this.selection.clear();
-      return;
-    }else {
-    this.dataSourceMainTable.filteredData.forEach(row =>
-      this.selection.select(row)
-    );
-  }
-
-    // Select every row in the current data source
-    this.selection.select(...this.dataSourceMainTable.data);
+    } else {
+      // Otherwise, select only the rows that are currently visible (filtered)
+      this.dataSourceMainTable.filteredData.forEach(row =>
+        this.selection.select(row)
+      );
+    }
   }
 
   /** The label for the checkbox on the passed row */
@@ -217,20 +224,6 @@ export class ClassManagementComponent {
       }
     );
   }
-  onEdit(row: UserData) {
-
-    const id = row.id;
-
-    this.dataService.getStaffsbyID(id).subscribe(res => {
-
-      console.log("Edit Data:", res);
-      // Open form
-      this.isEditFormVisible = true;
-      // Assign full object to form model
-      this.staffEnroll = res;
-    });
-    this.activeRow = null;
-  }
 
 
   GetStudentsInputData() {
@@ -249,6 +242,20 @@ export class ClassManagementComponent {
     if (event) { event.stopPropagation(); } // prevent document click closures if used
     this.activeRow = this.activeRow === id ? null : id;
   }
+  onEdit(row: UserData) {
+
+    const id = row.id;
+    
+    const formatted = (this.originalStudentData as any).filter((item: StudEnroll) => item.id === id).map((item: any) => ({
+      id: item.id,
+      name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName,
+      class: this.classesToUpdate.find((cls: any) => cls === item.studentDetails[0]?.admissionClass) || item.studentDetails[0]?.admissionClass,
+      division: this.divisionsToUpdate.find((div: any) => div === item.studentDetails[0]?.division) || item.studentDetails[0]?.division
+    }));
+
+    this.dataSourceEditTable.data = formatted.map((s: any) => new Entries(s));
+    this.isEditFormVisible = true;
+  }
 
   updatedata() {
     const selectedIds = this.selection.selected.map((item: any) => item.id);
@@ -257,7 +264,7 @@ export class ClassManagementComponent {
 
     const formatted = (this.originalStudentData as any).filter((item: StudEnroll) =>
       selectedIds.includes(item.id)).map((item: any) =>
-        ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: item.studentDetails[0]?.admissionClass, division: item.studentDetails[0]?.division }));
+        ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: this.classesToUpdate.find((cls: any) => cls === item.studentDetails[0]?.admissionClass) || item.studentDetails[0]?.admissionClass, division: this.divisionsToUpdate.find((div: any) => div === item.studentDetails[0]?.division) || item.studentDetails[0]?.division }));
 
     this.dataSourceEditTable.data = formatted.map((s: any) => new Entries(s));
     this.isEditFormVisible = true;
@@ -265,6 +272,11 @@ export class ClassManagementComponent {
 
   updateClassandDivision() {
     console.log("Updated Class:", this.selectedClass, "Updated Division:", this.selectedDivision);
+
+    // const modal = new (window as any).bootstrap.Modal(
+    //   document.getElementById('ModalLabel3')
+    // );
+    // modal.show();
 
     const selectedIds = this.selection.selected.map((item: any) => item.id);
     if (this.selectedClass || this.selectedDivision) {
@@ -279,17 +291,16 @@ export class ClassManagementComponent {
           return item;
         });
 
-      // Pass updatedStudents to the API (you may need to adjust the endpoint and payload structure)
-
-      console.log("Updated Student Data to be sent to API:", updatedStudents);
-      console.log("Selected IDs for Update:", selectedIds + " Update Data: " + JSON.stringify(updatedStudents));
-
       selectedIds.forEach((id: number) => {
         const studentData = updatedStudents.find((student: any) => student.id === id);
         this.dataService.updateStudentData(id, studentData).subscribe({
           next: (res) => {
             console.log("Saved Successfully", res);
-
+            selectedIds.length = 0; // Clear selection after update
+            this.selectedClass = ''; // Reset dropdowns
+            this.selectedDivision = '';
+            this.selection.clear();
+            this.dataSourceMainTable.filter = ''; // Reset filter to show all data
             this.loadStudents();   // refresh table
             this.isEditFormVisible = false; // close form
           },

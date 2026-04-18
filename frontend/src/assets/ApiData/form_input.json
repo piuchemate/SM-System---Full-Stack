@@ -70,6 +70,13 @@
                 "11th",
                 "12th"
             ],
+            "divisions": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E"
+            ],
             "documents": [
                 "Birth Certificate",
                 "Aadhar Card",

@@ -85,25 +85,18 @@ export class StudManagementComponent {
   }
 
   saveForm(form: any) {
-  //    if (!form) return;
-
-  // // 🔥 THIS IS THE MAIN FIX
-  // if (form.invalid) {
-  //   form.control.markAllAsTouched();  // ✅ trigger all validations
-  //   return;
-  // }
 
     if (!form || form.invalid) {
       alert("Please fill all required fields");
       form.control.markAllAsTouched();  // ✅ trigger all validations
-    return;
+      return;
     }
 
     // To show modal after form comlition
     const modal = new (window as any).bootstrap.Modal(
-    document.getElementById('exampleModa3')
-  );
-  modal.show();
+      document.getElementById('exampleModa3')
+    );
+    modal.show();
 
     if (this.studEnroll.id == null) {
       console.log("Inserting new entry");
@@ -167,7 +160,7 @@ export class StudManagementComponent {
       // Assign full object to form model
       this.studEnroll = res;
     });
-this.GetStudentsInputData();
+    this.GetStudentsInputData();
     this.activeRow = null;
   }
 

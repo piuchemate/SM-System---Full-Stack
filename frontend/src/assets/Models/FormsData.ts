@@ -6,6 +6,7 @@ export interface Religion {
 
 export interface FormData {
   religions: Religion[];
+  divisions: string[];
   languages: string[];
   classes: string[];
   documents: string[];

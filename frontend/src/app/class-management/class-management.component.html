@@ -85,7 +85,7 @@
                 <th mat-header-cell *matHeaderCellDef>
                     <mat-checkbox (change)="$event ? toggleAllRows() : null"
                         [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
                     </mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let row">
@@ -190,15 +190,18 @@
             <label>You are updating all student class and division available in table</label>
         </div>
         <div class="col-12 d-flex justify-content-end gap-2">
-            <button class="btn btn-success" data-bs-target="#ModalLabel3" title="updateform">
+            <button class="btn btn-success" data-bs-target="#ModalLabel3" title="updateform" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#edittableModal'">
                 <i class="fas fa-save me-2"></i>Update
             </button>
             <!-- Modal -->
-            <div class="modal fade" id="ModalLabel3" tabindex="-1" aria-labelledby="ModalLabel3" aria-hidden="true">
+            <div class="modal fade" [id]="'edittableModal'" tabindex="-1" aria-labelledby="ModalLabel3"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <div class="mb-3"><b> Please confirm that you want to update these records ?</b></div>
+                            <div class="mb-3"><b> Please confirm that you want to update class to {{selectedClass}} and
+                                    division to {{selectedDivision}} for all below records ?</b></div>
                             <button type="button" class="btn btn-secondary btn-sm me-2"
                                 data-bs-dismiss="modal">No</button>
                             <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"
@@ -214,19 +217,18 @@
         </div>
 
 
-        <!-- Main table -->
         <mat-form-field appearance="fill" class="me-3">
             <mat-label>Select Class</mat-label>
             <mat-select name="selectClass" #selectClass="ngModel" (selectionChange)="applyDropdownFilter($event.value)"
                 [(ngModel)]="selectedClass">
-                <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
+                <mat-option *ngFor="let class of classesToUpdate" [value]="class">{{ class }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Select Division</mat-label>
             <mat-select name="selectDivision" #selectDivision="ngModel"
                 (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedDivision">
-                <mat-option *ngFor="let division of divisionList" [value]="division">{{ division }}</mat-option>
+                <mat-option *ngFor="let division of divisionsToUpdate" [value]="division">{{ division }}</mat-option>
             </mat-select>
         </mat-form-field>
 
