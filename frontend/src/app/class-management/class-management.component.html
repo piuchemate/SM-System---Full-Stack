@@ -53,10 +53,10 @@
 
 
 
-    <!-- Main Table -->
+    <!-- main table -->
     <div class="table-container" *ngIf="!isEditFormVisible">
         <div class="">
-            <mat-form-field class="filter-field me-3" >
+            <mat-form-field class="filter-field me-3">
                 <mat-label>Filter</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
                 <mat-label>Search</mat-label>
@@ -179,6 +179,7 @@
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
             aria-label="Select page of periodic elements"></mat-paginator>
+
     </div>
 
 
@@ -189,10 +190,7 @@
             <label>You are updating all student class and division available in table</label>
         </div>
         <div class="col-12 d-flex justify-content-end gap-2">
-
-
-            <button class="btn btn-success" data-bs-target="#exampleModa3" title="saveForm"
-                (click)="updateClassandDivision()">
+            <button class="btn btn-success" data-bs-target="#ModalLabel3" title="updateform">
                 <i class="fas fa-save me-2"></i>Update
             </button>
             <!-- Modal -->
@@ -215,9 +213,12 @@
 
         </div>
 
+
+        <!-- Main table -->
         <mat-form-field appearance="fill" class="me-3">
             <mat-label>Select Class</mat-label>
-            <mat-select  name="selectClass" #selectClass="ngModel" (selectionChange)="applyDropdownFilter($event.value)" [(ngModel)]="selectedClass">
+            <mat-select name="selectClass" #selectClass="ngModel" (selectionChange)="applyDropdownFilter($event.value)"
+                [(ngModel)]="selectedClass">
                 <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -226,10 +227,9 @@
             <mat-select name="selectDivision" #selectDivision="ngModel"
                 (selectionChange)="applyDropdownFilter($event.value)" required [(ngModel)]="selectedDivision">
                 <mat-option *ngFor="let division of divisionList" [value]="division">{{ division }}</mat-option>
-
             </mat-select>
         </mat-form-field>
-       
+
         <table mat-table [dataSource]="dataSourceEditTable" matSort (matSortChange)="announceSortChange($event)"
             class="mat-elevation-z8">
             <!-- Position Column -->

@@ -69,6 +69,7 @@ export class ClassManagementComponent {
 
 
   ngAfterViewInit() {
+   this.dataSourceMainTable.paginator = this.paginator;
     this.dataSourceEditTable.sort = this.sort;
   }
 
@@ -172,16 +173,21 @@ export class ClassManagementComponent {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSourceMainTable.data.length; // Fixed: access .data
+    const numRows = this.dataSourceMainTable.filteredData.length; // Fixed: access .data
     return numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
+ 
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
-    }
+    }else {
+    this.dataSourceMainTable.filteredData.forEach(row =>
+      this.selection.select(row)
+    );
+  }
 
     // Select every row in the current data source
     this.selection.select(...this.dataSourceMainTable.data);

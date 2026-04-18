@@ -15,13 +15,13 @@
           "disability": "No",
           "lastSchool": "AC",
           "birthPlace": "CE",
-          "admissionClass": "9th",
+          "admissionClass": "10th",
           "address": "CWQC",
           "documentsSubmitted": "Previous School Report Card",
           "passportPhoto": "C:\\fakepath\\Screenshot_9-4-2026_17590_localhost.jpeg",
           "admissionDate": "2026-04-30",
           "caste": "w",
-          "division": "B"
+          "division": "A"
         }
       ],
       "fatherDetails": [
@@ -65,7 +65,7 @@
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
           "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
-          "division": "B"
+          "division": "A"
         }
       ],
       "fatherDetails": [
