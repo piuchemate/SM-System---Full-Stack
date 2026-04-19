@@ -14,12 +14,16 @@ export class StudentDetail {
   disabilityDetails!: string;
   lastSchool!: string;
   admissionDate!: Date;
-  admissionClass!: string;
   address!: string;
   phone!: number;
   documentsSubmitted!: string;
   passportPhoto!: string;
   division!: string;
+  currentClass!: string;
+  currentDivision!: string;
+  admissionDivision!: string;
+  admissionClass!: string;
+
 }
 export class FatherDetail {
   fName!: string;

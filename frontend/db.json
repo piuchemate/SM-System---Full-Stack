@@ -21,7 +21,9 @@
           "passportPhoto": "C:\\fakepath\\Screenshot_9-4-2026_17590_localhost.jpeg",
           "admissionDate": "2026-04-30",
           "caste": "w",
-          "division": "B"
+          "admissionDivision": "B",
+          "currentClass": "5th",
+          "currentDivision": "B"
         }
       ],
       "fatherDetails": [
@@ -48,9 +50,9 @@
       "id": 5,
       "studentDetails": [
         {
-          "fName": "Swara",
-          "mName": "Govind",
-          "lName": "Chemate",
+          "fName": "Abhay",
+          "mName": "s",
+          "lName": "Nagare",
           "email": "swarachemate@gmail.com",
           "motherTongue": "Hindi",
           "disability": "No",
@@ -65,7 +67,8 @@
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
           "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
-          "division": "A"
+          "division": "A",
+          "caste": "ghtdrd"
         }
       ],
       "fatherDetails": [

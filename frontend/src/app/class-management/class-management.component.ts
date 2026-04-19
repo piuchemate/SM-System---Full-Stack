@@ -99,17 +99,18 @@ export class ClassManagementComponent {
 
       this.originalStudentData = res;
 
-      const formatted = res.map((item: any) => ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: item.studentDetails[0]?.admissionClass, division: item.studentDetails[0]?.division }));
+      const formatted = res.map((item: any) => (
+        { id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: item.studentDetails[0]?.currentClass, division: item.studentDetails[0]?.currentDivision }));
       this.dataSourceMainTable.data = formatted.map((s: any) => new Entries(s));
 
       // 1. Generate Unique Dropdown Lists
       this.classList = [...new Set(res
-        .filter((item: StudEnroll) => item.studentDetails[0]?.admissionClass)
-        .map((item: StudEnroll) => item.studentDetails[0].admissionClass)
+        .filter((item: StudEnroll) => item.studentDetails[0]?.currentClass)
+        .map((item: StudEnroll) => item.studentDetails[0].currentClass)
       )];
       this.divisionList = [...new Set(res
-        .filter((item: StudEnroll) => item.studentDetails[0]?.division)
-        .map((item: StudEnroll) => item.studentDetails[0].division)
+        .filter((item: StudEnroll) => item.studentDetails[0]?.currentDivision)
+        .map((item: StudEnroll) => item.studentDetails[0].currentDivision)
       )];
 
       // 2. Setup Custom Filter Predicate
@@ -245,7 +246,7 @@ export class ClassManagementComponent {
   onEdit(row: UserData) {
 
     const id = row.id;
-    
+
     const formatted = (this.originalStudentData as any).filter((item: StudEnroll) => item.id === id).map((item: any) => ({
       id: item.id,
       name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName,
@@ -273,20 +274,15 @@ export class ClassManagementComponent {
   updateClassandDivision() {
     console.log("Updated Class:", this.selectedClass, "Updated Division:", this.selectedDivision);
 
-    // const modal = new (window as any).bootstrap.Modal(
-    //   document.getElementById('ModalLabel3')
-    // );
-    // modal.show();
-
     const selectedIds = this.selection.selected.map((item: any) => item.id);
     if (this.selectedClass || this.selectedDivision) {
       const updatedStudents = (this.originalStudentData as any).filter((item: StudEnroll) =>
         selectedIds.includes(item.id)).map((item: any) => {
           if (this.selectedClass) {
-            item.studentDetails[0].admissionClass = this.selectedClass;
+            item.studentDetails[0].currentClass = this.selectedClass;
           }
           if (this.selectedDivision) {
-            item.studentDetails[0].division = this.selectedDivision;
+            item.studentDetails[0].currentDivision = this.selectedDivision;
           }
           return item;
         });
