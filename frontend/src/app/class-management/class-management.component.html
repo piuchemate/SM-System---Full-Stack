@@ -56,7 +56,7 @@
     <!-- main table -->
     <div class="table-container" *ngIf="!isEditFormVisible">
         <div class="">
-            <mat-form-field class="filter-field me-3">
+            <mat-form-field class="filter-field me-3" appearance="fill">
                 <mat-label>Filter</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
                 <mat-label>Search</mat-label>

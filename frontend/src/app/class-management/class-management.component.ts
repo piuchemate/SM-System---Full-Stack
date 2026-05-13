@@ -250,8 +250,8 @@ export class ClassManagementComponent {
     const formatted = (this.originalStudentData as any).filter((item: StudEnroll) => item.id === id).map((item: any) => ({
       id: item.id,
       name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName,
-      class: this.classesToUpdate.find((cls: any) => cls === item.studentDetails[0]?.admissionClass) || item.studentDetails[0]?.admissionClass,
-      division: this.divisionsToUpdate.find((div: any) => div === item.studentDetails[0]?.division) || item.studentDetails[0]?.division
+      class: item.studentDetails[0]?.currentClass,
+      division: item.studentDetails[0]?.currentDivision
     }));
 
     this.dataSourceEditTable.data = formatted.map((s: any) => new Entries(s));
@@ -265,7 +265,7 @@ export class ClassManagementComponent {
 
     const formatted = (this.originalStudentData as any).filter((item: StudEnroll) =>
       selectedIds.includes(item.id)).map((item: any) =>
-        ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: this.classesToUpdate.find((cls: any) => cls === item.studentDetails[0]?.admissionClass) || item.studentDetails[0]?.admissionClass, division: this.divisionsToUpdate.find((div: any) => div === item.studentDetails[0]?.division) || item.studentDetails[0]?.division }));
+        ({ id: item.id, name: item.studentDetails[0]?.fName + ' ' + item.studentDetails[0]?.mName + ' ' + item.studentDetails[0]?.lName, class: item.studentDetails[0]?.currentClass, division: item.studentDetails[0]?.currentDivision }));
 
     this.dataSourceEditTable.data = formatted.map((s: any) => new Entries(s));
     this.isEditFormVisible = true;

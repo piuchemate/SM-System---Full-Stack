@@ -23,7 +23,7 @@
           "caste": "w",
           "admissionDivision": "B",
           "currentClass": "5th",
-          "currentDivision": "B"
+          "currentDivision": "D"
         }
       ],
       "fatherDetails": [
@@ -68,7 +68,9 @@
           "address": "Shriram colony Datta Nagar Shevgoan",
           "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
           "division": "A",
-          "caste": "ghtdrd"
+          "caste": "ghtdrd",
+          "currentClass": "5th",
+          "currentDivision": "D"
         }
       ],
       "fatherDetails": [
@@ -111,7 +113,9 @@
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
           "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
-          "division": "A"
+          "division": "A",
+          "currentClass": "5th",
+          "currentDivision": "A"
         }
       ],
       "fatherDetails": [
@@ -154,7 +158,9 @@
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
           "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
-          "division": "A"
+          "division": "A",
+          "currentClass": "10th",
+          "currentDivision": "E"
         }
       ],
       "fatherDetails": [
@@ -197,7 +203,9 @@
           "admissionDate": "2026-04-27",
           "address": "Shriram colony Datta Nagar Shevgoan",
           "passportPhoto": "C:\\fakepath\\passportImage.jpeg",
-          "division": "A"
+          "division": "A",
+          "currentClass": "10th",
+          "currentDivision": "E"
         }
       ],
       "fatherDetails": [

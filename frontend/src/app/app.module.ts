@@ -30,6 +30,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
   imports: [
     BrowserModule,
+    
     BrowserAnimationsModule,
     ScrollingModule,
     MatTableModule,
@@ -63,6 +65,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {
